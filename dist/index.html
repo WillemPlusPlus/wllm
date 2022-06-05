@@ -43,22 +43,28 @@
       #blockwrapper{
         position: absolute;
         display: grid;
-        grid-template-columns: 200px 600px;
+        grid-template-columns: 600px 600px;
         top: 50%;
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
-        gap: 0;
+        row-gap: 0;
+        column-gap: 10px;
+        align-items: end;
+        
       }
       .blockLeft{
         text-align: right;
         font-size: 80pt;
+        line-height: 90%;
       }
       .blockRight{
         text-align: left;
         font-size: 20pt;
-      }
+        line-height: 250%;
 
+
+      }
 
     </style>
   </head>
@@ -70,11 +76,11 @@
     </div>
     <div id = "blockwrapper">
       <div class = blockLeft id = blockc1r1>Hello</div> 
-      <div class = blockRight id = blockc2r1>Welcome to my website!</div> 
+      <div class = blockRight id = blockc2r1>// Welcome to my website :) </div> 
       <div class = blockLeft id = blockc1r2>@wllm</div>
-      <div class = blockRight id = blockc2r2>My name is Willem Meyer</div> 
+      <div class = blockRight id = blockc2r2>// My name is Willem Meyer</div> 
       <div class = blockLeft id = blockc1r3>.info</div> 
-      <div class = blockRight id = blockc2r3>Scroll down to learn more</div> 
+      <div class = blockRight id = blockc2r3>// Scroll down for more info</div> 
     </div>
 
 
