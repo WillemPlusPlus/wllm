@@ -8,12 +8,18 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&display=swap" rel="stylesheet">
     <style>
       html,body{
         margin:0;
         padding:0;
-        font-family: 'Overpass', sans-serif;
+        font-family: 'Overpass Mono', monospace;
+        width: 100vw;
+        height: 100vw;
+      }
+      div{
+        margin:0;
+        padding:0;
       }
       header{
         margin:0;
@@ -34,6 +40,25 @@
       #banner{
         width: fit-content
       }
+      #blockwrapper{
+        position: absolute;
+        display: grid;
+        grid-template-columns: 200px 600px;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        gap: 0;
+      }
+      .blockLeft{
+        text-align: right;
+        font-size: 80pt;
+      }
+      .blockRight{
+        text-align: left;
+        font-size: 20pt;
+      }
+
 
     </style>
   </head>
@@ -42,6 +67,14 @@
     <div id = banner>
       <svg id = "logo" width="300" height="48"></svg>
       <header>Willem <span>||</span> Meyer</header>
+    </div>
+    <div id = "blockwrapper">
+      <div class = blockLeft id = blockc1r1>Hello</div> 
+      <div class = blockRight id = blockc2r1>Welcome to my website!</div> 
+      <div class = blockLeft id = blockc1r2>@wllm</div>
+      <div class = blockRight id = blockc2r2>My name is Willem Meyer</div> 
+      <div class = blockLeft id = blockc1r3>.info</div> 
+      <div class = blockRight id = blockc2r3>Scroll down to learn more</div> 
     </div>
 
 
