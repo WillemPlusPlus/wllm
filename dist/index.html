@@ -6,20 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HTML 5 Boilerplate</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300&display=swap" rel="stylesheet">
     <style>
       html,body{
         margin:0;
         padding:0;
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Overpass', sans-serif;
       }
-      svg{
+      header{
+        margin:0;
+        padding:0;
+        transform: skew(-20deg);
+
+      }
+      #background{
         position: absolute;
+      }
+      #logo{
+        position: relative;
       }
     </style>
   </head>
   <body>
-    <svg id = "bg" width="1920" height="1080"></svg>
-    <svg id = "logo" width="300" height="200"></svg>
+    <svg id = "background" width="1920" height="1080"></svg>
+    <div id = banner>
+      <svg id = "logo" width="300" height="100"></svg>
+      <header>Willem <i>||</i> Meyer</header>
+    </div>
+
+
     <script src="main.js"></script>
   </body>
 </html>
