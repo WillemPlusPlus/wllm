@@ -6,27 +6,29 @@ export const createLine = (e,d,c,s) => {
       .attr("stroke-linecap","round")
   }
 
-  export const createLogo = (e) =>{
- 
-    const height  = parseInt(e.style("height"))
-    e.attr("width",3.5*height)
+  export const createLogo = (e,height, offsetX, offsetY) =>{
+
     const h = height/2;
     const w = height*3/8;
     const sx = height/4;
+    const sx2 = sx/0.9;
     const h1 = 0.5*h
     const hl = [h,0];
     const hs = [[0,h1],[h1,0],[0,0],hl,hl,hl,hl,hl,hl,[h,h-h1],[h-h1,h],[h,h]]
     const ws = [[0,w/2],[w/2,w],[w,0],[w,2*w],[2*w,3*w],[3*w,4*w],[4*w,5*w],[5*w,6*w],[6*w,7*w],[7*w,7.5*w],[7.5*w,8*w],[8*w,7*w]]
     const cs = [0,0,0,0,0,1,1,0,0,0,0,0]
     let d, colour;
-    const colourMap = ["black", "grey"]
+    const colourMap = ["black", "white"]
     hs.forEach((d,i)=>{
         colour = colourMap[cs[i]]
         d = d3.line()([
-        [ws[i][0]+sx,d[0]+sx],[ws[i][1]+sx,d[1]+sx]
+        [ws[i][0]+sx+offsetX,d[0]+sx+offsetY],[ws[i][1]+sx+offsetX,d[1]+sx+offsetY]
     ]);
 
-        createLine(e,d,colour,sx);
+        createLine(e,d,colourMap[0],sx);
+        if(cs[i]){
+            createLine(e,d,colourMap[1],sx2);
+        }
     })
 }
 
@@ -52,7 +54,7 @@ export const createBackground = (e, n, colours) => {
 export const createBannerBackground = (e,s,c) => {
     const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
 
-    e.append("polygon")
+    return e.append("polygon")
     .data([triangle])
     .attr("stroke" , "none")
     .attr("fill" , c)

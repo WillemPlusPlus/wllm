@@ -16,6 +16,7 @@
         font-family: 'Overpass Mono', monospace;
         width: 100vw;
         height: 100vw;
+        color: white;
       }
       div{
         margin:0;
@@ -27,6 +28,8 @@
         transform: skew(-20deg);
         text-align: center;
         font-size: 10pt;
+        line-height: 0;
+        
       }
       span{
         font-size: 7pt;
@@ -38,7 +41,9 @@
         position: relative;
       }
       #banner{
-        width: fit-content
+        left: 30px;
+        top: 80px;
+        position: absolute;
       }
       #blockwrapper{
         position: absolute;
@@ -71,11 +76,10 @@
   <body>
     <svg id = "background" width="1920" height="1080"></svg>
     <div id = banner>
-      <svg id = "logo" width="300" height="48"></svg>
       <header>Willem <span>||</span> Meyer</header>
     </div>
     <div id = "blockwrapper">
-      <div class = blockLeft id = blockc1r1>Hello</div> 
+      <div class = blockLeft id = blockc1r1>hello</div> 
       <div class = blockRight id = blockc2r1>// Welcome to my website :) </div> 
       <div class = blockLeft id = blockc1r2>@wllm</div>
       <div class = blockRight id = blockc2r2>// My name is Willem Meyer</div> 
