@@ -1,4 +1,5 @@
 export const createLine = (e,d,c,s) => {
+    console.log(e)
     e.append("path")
       .attr("d", d)
       .attr("stroke", c)
@@ -24,6 +25,7 @@ export const createLine = (e,d,c,s) => {
         d = d3.line()([
         [ws[i][0]+ox,d[0]+oy],[ws[i][1]+ox,d[1]+oy]
     ]);
+
         createLine(e,d,colour,sx);
     })
 }
