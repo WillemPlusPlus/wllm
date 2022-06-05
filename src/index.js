@@ -1,6 +1,6 @@
 import { createLine, createLogo, createBackground } from "./svgDraw";
 
-const svgBG = d3.select("#bg")
+const svgBG = d3.select("#background")
 const svgLogo = d3.select("#logo")
 
 createLogo(svgLogo)

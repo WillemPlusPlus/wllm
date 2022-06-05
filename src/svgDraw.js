@@ -1,5 +1,4 @@
 export const createLine = (e,d,c,s) => {
-    console.log(e)
     e.append("path")
       .attr("d", d)
       .attr("stroke", c)
@@ -8,11 +7,12 @@ export const createLine = (e,d,c,s) => {
   }
 
   export const createLogo = (e) =>{
-    const h = 40;
-    const w = 30;
-    const sx = 20;
-    const ox = 20;
-    const oy = 20;
+ 
+    const height  = parseInt(e.style("height"))
+    e.attr("width",3.5*height)
+    const h = height/2;
+    const w = height*3/8;
+    const sx = height/4;
     const h1 = 0.5*h
     const hl = [h,0];
     const hs = [[0,h1],[h1,0],[0,0],hl,hl,hl,hl,hl,hl,[h,h-h1],[h-h1,h],[h,h]]
@@ -23,7 +23,7 @@ export const createLine = (e,d,c,s) => {
     hs.forEach((d,i)=>{
         colour = colourMap[cs[i]]
         d = d3.line()([
-        [ws[i][0]+ox,d[0]+oy],[ws[i][1]+ox,d[1]+oy]
+        [ws[i][0]+sx,d[0]+sx],[ws[i][1]+sx,d[1]+sx]
     ]);
 
         createLine(e,d,colour,sx);
