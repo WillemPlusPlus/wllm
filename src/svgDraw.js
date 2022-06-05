@@ -48,3 +48,13 @@ export const createBackground = (e, n, colours) => {
     createLine(e,line,colours[i],stroke)
   });
 }
+
+export const createBannerBackground = (e,s,c) => {
+    const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
+
+    e.append("polygon")
+    .data([triangle])
+    .attr("stroke" , "none")
+    .attr("fill" , c)
+    .attr("points", triangle)
+}
