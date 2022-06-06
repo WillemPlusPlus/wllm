@@ -11,7 +11,7 @@ export const createLine = (e,d,c,s) => {
     const h = height/2;
     const w = height*3/8;
     const sx = height/4;
-    const sx2 = sx/0.9;
+    const sx2 = sx*0.75;
     const h1 = 0.5*h
     const hl = [h,0];
     const hs = [[0,h1],[h1,0],[0,0],hl,hl,hl,hl,hl,hl,[h,h-h1],[h-h1,h],[h,h]]

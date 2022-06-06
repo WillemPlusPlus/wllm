@@ -57,6 +57,11 @@
         align-items: end;
         
       }
+
+      #blockwrapper:hover > .blockLeft{
+        text-decoration: underline;
+        color: blue;
+      }
       .blockLeft{
         text-align: right;
         font-size: 80pt;
@@ -66,9 +71,14 @@
         text-align: left;
         font-size: 20pt;
         line-height: 250%;
-
-
       }
+
+      a {
+        color: inherit;
+        text-decoration: inherit;
+      }
+
+
 
     </style>
   </head>
@@ -79,11 +89,11 @@
       <header>// Perth, WA</header>
     </div>
     <div id = "blockwrapper">
-      <div class = blockLeft id = blockc1r1>hello</div> 
+      <div class = blockLeft id = blockc1r1><a href="mailto:someone@yoursite.com">hello</a></div> 
       <div class = blockRight id = blockc2r1>// thanks for checking in! </div> 
-      <div class = blockLeft id = blockc1r2>@wllm</div>
+      <div class = blockLeft id = blockc1r2><a href="mailto:someone@yoursite.com">@wllm</a></div>
       <div class = blockRight id = blockc2r2>// my name is Willem Meyer,</div> 
-      <div class = blockLeft id = blockc1r3>.info</div> 
+      <div class = blockLeft id = blockc1r3><a href="mailto:someone@yoursite.com">.info</a></div> 
       <div class = blockRight id = blockc2r3>// software engineer in the making</div> 
     </div>
 
