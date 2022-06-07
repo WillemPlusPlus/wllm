@@ -32,7 +32,7 @@ export const createLine = (e,d,c,s) => {
     })
 }
 
-export const createBackground = (e, n, colours, vMax, vw) => {
+export const createBackgroundData = (e, n, colours, vMax, vw) => {
   const spacing = vMax*5
   const sinC = 0.707//0.866
   const lenMin = vMax*15
@@ -41,14 +41,13 @@ export const createBackground = (e, n, colours, vMax, vw) => {
   const stroke = vMax*5
   const offsetX = vw-startMax*0.5*n*0.5
   const offestY = -startMax*sinC*n*0.5
-  d3.range(n).forEach(i => {
+
+  return d3.range(n).map(i => {
     const len = Math.random()*lenRange+lenMin
     const start = i*spacing + Math.random()*startMax
     const x = start*sinC + offsetX
     const y = start*sinC + offestY
-    console.log(vw, offsetX)
-    const line = d3.line()([[x,y],[x-len,y+len]]);
-    createLine(e,line,colours[i],stroke)
+    return {"x":x,"y":y,"len":len,"start":start, "colour":d3.schemeAccent[i]}
   });
 }
 
