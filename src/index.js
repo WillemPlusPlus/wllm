@@ -1,6 +1,10 @@
-import { createLine, createLogo, createBackground, createBannerBackground } from "./svgDraw";
+import { createLine, createLogo, createBackgroundData, createBannerBackground } from "./svgDraw";
 
-const bannerSize = 300
+let vh = window.innerHeight
+let vw = window.innerWidth
+const vMax = Math.max(vh,vw)/100
+const vMin = Math.min(vh,vw)/100
+const bannerSize = vMax*20
 
 
 const svgBG = d3.select("#background")
@@ -14,15 +18,16 @@ svgMask.append("rect")
     .attr("height", bannerSize)
     .attr("fill", "#fff")
 
-createLogo(svgMask,60,5,10)
-createBackground(svgBG,6,d3.schemeAccent)
+createLogo(svgMask,vMax*2.5,vMax*5/1000,vMax*10/1000)
+let dataLine = createBackgroundData(svgBG,6,d3.schemeAccent,vMax, vw)
 
-
-let scrollCurr
-let scrollNew
-
-document.addEventListener("scroll", event => {
-    scrollNew = window.scrollY
-    console.log(scrollNew)
-  });
-
+console.log(dataLine)
+let svgLines = svgBG.append("svg").attr("id", "lines")
+svgLines.selectAll("path")
+    .data(dataLine)
+    .join(enter => enter.append("path")
+        .attr("d", (d)=>{return d3.line()([[d.x,d.y],[d.x-d.len,d.y+d.len]])})
+        .attr("stroke", (d) => {return d.colour})
+        .attr("stroke-width", vMax*5)
+        .attr("stroke-linecap","round")
+    )
