@@ -16,3 +16,13 @@ svgMask.append("rect")
 
 createLogo(svgMask,60,5,10)
 createBackground(svgBG,6,d3.schemeAccent)
+
+
+let scrollCurr
+let scrollNew
+
+document.addEventListener("scroll", event => {
+    scrollNew = window.scrollY
+    console.log(scrollNew)
+  });
+
