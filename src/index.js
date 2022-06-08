@@ -4,12 +4,12 @@ let vh = window.innerHeight
 let vw = window.innerWidth
 const vMax = Math.max(vh,vw)/100
 const vMin = Math.min(vh,vw)/100
-const bannerSize = vMax*20
+const bannerSize = vMax*25
 
 
 const svgBG = d3.select("#background")
 const svgLogo = d3.select("#logo")
-const svgBanner = createBannerBackground(svgBG,bannerSize,d3.schemeAccent[0])
+const svgBanner = createBannerBackground(svgBG,bannerSize,d3.schemeDark2[0])
 svgBanner.attr("mask", "url(#logoClip)")
 const svgMask = svgBG.append("mask")
     .attr("id", "logoClip")
@@ -19,10 +19,10 @@ svgMask.append("rect")
     .attr("fill", "#fff")
     
 let svgLines = svgBG.append("svg").attr("id", "lines")
-let dataLines = createBackgroundData(svgBG,6,d3.schemeAccent,vMax, vw, 0, [])
-createBackground(svgLines, dataLines)
+let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vMax, vw, 0, [])
+createBackground(svgLines, dataLines, vMax)
 
-createLogo(svgMask,vMax*2.5,vMax*5/1000,vMax*10/1000)
+createLogo(svgMask,vMax*5,vMax*0.5,vMax*0.5)
 
 
 

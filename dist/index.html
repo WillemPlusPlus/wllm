@@ -23,15 +23,16 @@
         margin:0;
         padding:0;
       }
-      header{
+      .bannerText{
         margin:0;
         padding:0;
         transform: skew(-10deg);
         text-align: left;
-        font-size: 9pt;
-        letter-spacing: 3pt;
-        word-spacing: -3pt;
+        font-size: 1/2vmax;
+        letter-spacing: 1/3em;
+        word-spacing: -1/3em;
         color: white;
+        font-weight: bold;
         
       }
       #background{
@@ -49,8 +50,8 @@
         position: absolute;
         display: grid;
         grid-template-columns: 600px 600px;
-        top: 50%;
-        left: 50%;
+        top: 60%;
+        left: 40%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
         row-gap: 0;
@@ -88,8 +89,6 @@
   <body>
     <svg id = "background" width="100vw" height="100vh"></svg>
     <div id = banner>
-      <header>// WILLEM MEYER</header>
-      <header>// Perth, WA</header>
     </div>
     <div id = "blockwrapper">
       <div class = blockLeft id = blockc1r1><a href="mailto:someone@yoursite.com">hello</a></div> 

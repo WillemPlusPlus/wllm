@@ -7,6 +7,14 @@ export const createLine = (e,d,c,s) => {
   }
 
   export const createLogo = (e,height, offsetX, offsetY) =>{
+    console.log(offsetX,offsetY)
+    const createText = (e, text,x,y) => {
+      e.append("text")
+        .attr("class", "bannerText")
+        .attr("x",x)
+        .attr("y",y + height)
+        .text(text)
+    }
 
     const h = height/2;
     const w = height*3/8;
@@ -30,6 +38,10 @@ export const createLine = (e,d,c,s) => {
             createLine(e,d,colourMap[1],sx2);
         }
     })
+
+    createText(e,"// WILLEM MEYER",7*offsetX,2.25*offsetY)
+    createText(e, "// Perth, WA",7*offsetX,4.5*offsetY)
+    
 }
 
 export const createBackgroundData = (e, n, colours, vMax, vw, yPos, dataLines) => {
@@ -38,7 +50,6 @@ export const createBackgroundData = (e, n, colours, vMax, vw, yPos, dataLines) =
   const lenMin = vMax*15
   const lenRange = vMax*15
   const startMax = vMax*5
-  const stroke = vMax*5
   const offsetX = vw-startMax*0.5*n*0.5 - yPos
   const offestY = -startMax*sinC*n*0.5 + yPos
 
@@ -68,9 +79,9 @@ export const createBannerBackground = (e,s,c) => {
     .attr("points", triangle)
 }
 
-export const createBackground = (e, dataLines) =>{
+export const createBackground = (e, dataLines, vMax) =>{
 
-  const stroke = 200
+  const stroke = vMax*10
 
   e.selectAll("path")
       .data(dataLines)
