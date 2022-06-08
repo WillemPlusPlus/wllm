@@ -38,7 +38,33 @@ const scrollAnimation = (scrollPos,) => {
 
 }
 
-document.addEventListener('scroll', function(e) {
+
+
+const openAbout = (e) => {
+
+    // Get all elements with class="tabcontent" and hide them
+    const id = e.currentTarget.id
+    let tabContent = document.getElementsByClassName("tabcontent");
+    for(let i = 0; i<tabContent.length; i++){
+        if(tabContent[i].id == id){
+            tabContent[i].style.display = "block";
+        }else{
+            tabContent[i].style.display = "none";
+        }
+    }
+    let tabs = document.getElementsByClassName("tab");
+    for(let i = 0; i<tabs.length; i++){tabs[i].replace(" active", "");}
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById().getElementById(e.currentTarget.id)
+    e.currentTarget.className += " active";
+  }
+
+let tabs = document.getElementsByClassName("tab");
+for(let i = 0; i<tabs.length; i++){
+    tabs[i].addEventListener("click",openAbout);
+}
+
+document.addEventListener('scroll', (e) => {
   lastKnownScrollPosition = window.scrollY;
 
   if (!ticking) {

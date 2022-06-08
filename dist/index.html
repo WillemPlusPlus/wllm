@@ -15,7 +15,6 @@
         padding:0;
         font-family: 'Overpass Mono', monospace;
         background-color: #1e1e1e;
-
       }
       div{
         margin:0;
@@ -39,6 +38,7 @@
         color: white;
         font-weight: bold;
       }
+
       #background{
         position: absolute;
       }
@@ -75,6 +75,7 @@
         row-gap: 0;
         column-gap: 10px;
         background-color: white;
+        color: #1e1e1e
         
       }
 
@@ -99,7 +100,41 @@
         color: inherit;
         text-decoration: inherit;
       }
+      /* Style the tab */
+      .tabs {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
 
+      /* Style the buttons that are used to open the tab content */
+      .tabs button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+      }
+
+      /* Change background color of buttons on hover */
+      .tabs button:hover {
+        background-color: #ddd;
+      }
+
+      /* Create an active/current tablink class */
+      .tabs button.active {
+        background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
 
 
     </style>
@@ -121,7 +156,33 @@
     <div class = "page" id = "page2">
       <div id = "aboutwrapper">
           <img src="img/wllmportatait1.png" width = 546 height = 546>
-          <div>Will here! I’m a student/programmer/graphic designer/cyclist. I’m about to complete my Masters of Software Engineering at the University of Western Australia. I’m looking to fulfil the course’s practicum component by interning for an organisation with a software focus. I hope to infiltrate such as organisation and make myself indispensable, learning all of their secrets so that once I am a qualified engineer they will have no choice but to keep me around. If you are part of such an organisation, either in Perth or abroad, please ignore the preceding line and email me!</div>
+          <div class = "about">
+            <div class = "tabs">
+              <div class = "tab" id = "About">About </div>
+              <div class = "tab" id = "DataScience">Data Science</div>
+              <div class = "tab" id = "GraphicDesign">Graphic Design</div>
+              <div class = "tab" id = "Proficiencies">Proficiencies</div>
+            </div>
+            <div id="About" class="tabcontent">
+              <h3>About</h3>
+              <p>Will here! I’m a student/programmer/graphic designer/cyclist. I’m about to complete my Masters of Software Engineering at the University of Western Australia. I’m looking to fulfil the course’s practicum component by interning for an organisation with a software focus. I hope to infiltrate such as organisation and make myself indispensable, learning all of their secrets so that once I am a qualified engineer they will have no choice but to keep me around. If you are part of such an organisation, either in Perth or abroad, please ignore the preceding line and email me!
+              </p>
+            </div>
+            
+            <div id="DataScience" class="tabcontent">
+              <h3>Data Science</h3>
+              <p>Paris is the capital of France.</p>
+            </div>
+            
+            <div id="GraphicDesign" class="tabcontent">
+              <h3>Graphic Design</h3>
+              <p>Tokyo is the capital of Japan.</p>
+            </div>
+            <div id="Proficiencies" class="tabcontent">
+              <h3>Proficiencies</h3>
+              <p>Tokyo is the capital of Japan.</p>
+            </div>
+        </div>
       </div>
     </div>
 
