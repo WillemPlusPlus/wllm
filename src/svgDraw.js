@@ -32,21 +32,28 @@ export const createLine = (e,d,c,s) => {
     })
 }
 
-export const createBackgroundData = (e, n, colours, vMax, vw) => {
+export const createBackgroundData = (e, n, colours, vMax, vw, yPos, dataLines) => {
   const spacing = vMax*5
   const sinC = 0.707//0.866
   const lenMin = vMax*15
   const lenRange = vMax*15
   const startMax = vMax*5
   const stroke = vMax*5
-  const offsetX = vw-startMax*0.5*n*0.5
-  const offestY = -startMax*sinC*n*0.5
+  const offsetX = vw-startMax*0.5*n*0.5 - yPos
+  const offestY = -startMax*sinC*n*0.5 + yPos
 
   return d3.range(n).map(i => {
-    const len = Math.random()*lenRange+lenMin
-    const start = i*spacing + Math.random()*startMax
+    let len, start
+    if(dataLines.length){
+      len = dataLines[i].len
+      start = dataLines[i].start
+    }else{
+      len = Math.random()*lenRange+lenMin
+      start = i*spacing + Math.random()*startMax
+    }
     const x = start*sinC + offsetX
     const y = start*sinC + offestY
+
     return {"x":x,"y":y,"len":len,"start":start, "colour":d3.schemeAccent[i]}
   });
 }
@@ -59,4 +66,19 @@ export const createBannerBackground = (e,s,c) => {
     .attr("stroke" , "none")
     .attr("fill" , c)
     .attr("points", triangle)
+}
+
+export const createBackground = (e, dataLines) =>{
+
+  const stroke = 200
+
+  e.selectAll("path")
+      .data(dataLines)
+      .join(enter => enter.append("path")
+          .attr("d", (d)=>{return d3.line()([[d.x,d.y],[d.x-d.len,d.y+d.len]])})
+          .attr("stroke", (d) => {return d.colour})
+          .attr("stroke-width", stroke)
+          .attr("stroke-linecap","round"),
+          update => update.attr("d", (d)=>{return d3.line()([[d.x,d.y],[d.x-d.len,d.y+d.len]])})
+      )
 }
