@@ -14,14 +14,16 @@
         margin:0;
         padding:0;
         font-family: 'Overpass Mono', monospace;
-        width: 100vw;
-        height: 100vw;
         background-color: #1e1e1e;
 
       }
       div{
         margin:0;
         padding:0;
+      }
+      .page{
+        width : 100vw;
+        height : 100vh;
       }
       .bannerText{
         margin:0;
@@ -51,6 +53,20 @@
         display: grid;
         grid-template-columns: 600px 600px;
         top: 60%;
+        left: 40%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%);
+        row-gap: 0;
+        column-gap: 10px;
+        align-items: end;
+        
+      }
+
+      #aboutwrapper{
+        position: absolute;
+        display: grid;
+        grid-template-columns: 600px 600px;
+        top: 260%;
         left: 40%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
@@ -90,13 +106,21 @@
     <svg id = "background" width="100vw" height="100vh"></svg>
     <div id = banner>
     </div>
-    <div id = "blockwrapper">
-      <div class = blockLeft id = blockc1r1><a href="mailto:someone@yoursite.com">hello</a></div> 
-      <div class = blockRight id = blockc2r1>// thanks for checking in! </div> 
-      <div class = blockLeft id = blockc1r2><a href="mailto:someone@yoursite.com">@wllm</a></div>
-      <div class = blockRight id = blockc2r2>// my name is Willem Meyer,</div> 
-      <div class = blockLeft id = blockc1r3><a href="mailto:someone@yoursite.com">.info</a></div> 
-      <div class = blockRight id = blockc2r3>// software engineer in the making</div> 
+    <div class = "page" id = "page1">
+      <div id = "blockwrapper">
+        <div class = blockLeft id = blockc1r1><a href="mailto:someone@yoursite.com">hello</a></div> 
+        <div class = blockRight id = blockc2r1>// thanks for checking in! </div> 
+        <div class = blockLeft id = blockc1r2><a href="mailto:someone@yoursite.com">@wllm</a></div>
+        <div class = blockRight id = blockc2r2>// my name is Willem Meyer,</div> 
+        <div class = blockLeft id = blockc1r3><a href="mailto:someone@yoursite.com">.info</a></div> 
+        <div class = blockRight id = blockc2r3>// software engineer in the making</div> 
+      </div>
+    </div>
+    <div class = "page" id = "page2">
+      <div id = "aboutwrapper">
+          <img src=".jpg">
+
+      </div>
     </div>
 
 
