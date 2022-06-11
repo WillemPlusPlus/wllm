@@ -53,7 +53,7 @@ const openAbout = (e) => {
         }
     }
     let tabs = document.getElementsByClassName("tab");
-    for(let i = 0; i<tabs.length; i++){tabs[i].replace(" active", "");}
+    for(let i = 0; i<tabs.length; i++){tabs[i].className.replace(" active", "");}
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById().getElementById(e.currentTarget.id)
     e.currentTarget.className += " active";
@@ -76,3 +76,4 @@ document.addEventListener('scroll', (e) => {
     ticking = true;
   }
 });
+openAbout({"currentTarget":document.getElementById("About")})
