@@ -19,6 +19,9 @@
       html,body{
         background-color: #1e1e1e;
       }
+      svg{
+        position: absolute;
+      }
       div{
         margin:0;
         padding:0;
@@ -28,7 +31,7 @@
         height : 100vh;
       }
       #page2{
-        background-color: white;
+        margin-top: 10px;
       }
       .bannerText{
         margin:0;
@@ -71,15 +74,23 @@
         position: absolute;
         display: grid;
         grid-template-columns: 600px 600px;
-        top: 260%;
-        left: 40%;
+        top: 150%;
+        left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
         row-gap: 0;
         column-gap: 10px;
-        background-color: white;
-        color: #1e1e1e
-        
+        color: #1e1e1e;
+        align-items: center;
+        padding-right: 50px;
+        background: 
+        linear-gradient(#fff,#fff),
+        linear-gradient(315deg, transparent 75px, #fff 75px),
+        linear-gradient(#fff,#fff),
+        linear-gradient(135deg, transparent 75px, #fff 75px);
+        background-position: bottom left, bottom right, top right, top left;
+        background-size: 60% 60%;
+        background-repeat: no-repeat;
       }
 
       #blockwrapper:hover > .blockLeft{
@@ -166,7 +177,7 @@
     </style>
   </head>
   <body>
-    <svg id = "background" width="100vw" height="100vh"></svg>
+    <svg id = "background" width="100vw" height="200vh"></svg>
     <div id = banner>
     </div>
     <div class = "page" id = "page1">
@@ -208,15 +219,20 @@
             </div>
             <div id="skillsetContent" class="tabcontent">
               <ul>
-                <li><strong>Machine Learning and Computer Vision </strong>(PyTorch, TensorFlow, NumPy, pandas, scikit-learn, Open-cv, PIL)
-                </li><li><strong>Web technologies/Cloud Computing/DB management </strong>(HTML/JS, Node.js, AWS, Docker, SQL)
-                </li><li><strong>Data Science/Analysis/Visualisation </strong>(Python, R, Matlab, D3.js, Excel)
-                </li><li><strong>Graphic Design </strong>(Adobe Photoshop, Lightroom, Illustrator)
-                </li><li><strong>Systems, embedded systems and OOP </strong>(C,C#, Java)
-                </li><li><strong>Software Project Management </strong>(Documentation, Testing, Requirements Gathering, Design, Development, Maintenance, Version Control etc.)
-                </li><li><strong>Adobe Creative Cloud Suite</strong>
-                </li><li><strong>Microsoft Office Suite</strong>
-                </li>
+                <li><strong>Machine Learning and Computer Vision </strong></li>
+                  PyTorch, TensorFlow, NumPy, pandas, scikit-learn, Open-cv, PIL
+                <li><strong>Web technologies/Cloud Computing/DB management </strong></li>
+                  HTML/JS, Node.js, AWS, Docker, SQL
+                <li><strong>Data Science/Analysis/Visualisation </strong></li>
+                  Python 3, R, Matlab, D3.js, Excel
+                <li><strong>Graphic Design </strong></li>
+                  Adobe Photoshop, Lightroom, Illustrator
+                <li><strong>Systems, embedded systems and OOP </strong></li>
+                  C/C++,C#,Java
+                <li><strong>Software Project Management </strong></li>
+                  Documentation, Testing, Requirements Gathering, Design, Development, Maintenance, Version Control etc.
+                <li><strong>Adobe Creative Cloud Suite</strong></li>
+                <li><strong>Microsoft Office Suite</strong></li>
               </ul>
             </div>
         </div>
