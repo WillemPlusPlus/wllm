@@ -8,10 +8,10 @@ const bannerSize = vMax*25
 
 
 const svgBG = d3.select("#background")
-const svgLogo = d3.select("#logo")
-const svgBanner = createBannerBackground(svgBG,bannerSize,d3.schemeDark2[0])
+const svgLogo = d3.select("#banner")
+const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
 svgBanner.attr("mask", "url(#logoClip)")
-const svgMask = svgBG.append("mask")
+const svgMask = svgLogo.append("mask")
     .attr("id", "logoClip")
 svgMask.append("rect")
     .attr("width", bannerSize)
