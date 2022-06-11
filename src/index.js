@@ -30,9 +30,11 @@ let lastKnownScrollPosition = 0;
 let ticking = false;
 
 const scrollAnimation = (scrollPos,) => {
+
     const yBuffTop = 50
     const yBuffBot = 2500
-    let yPos = Math.max(Math.min(scrollPos,yBuffBot), yBuffTop)
+    const yFac = 1.6
+    let yPos = Math.max(Math.min(scrollPos*yFac,yBuffBot), yBuffTop)
     dataLines = createBackgroundData(svgBG,6,d3.schemeAccent,vMax, vw, yPos, dataLines)
     createBackground(svgLines, dataLines)
 

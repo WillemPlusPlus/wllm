@@ -86,10 +86,10 @@ export const createBackground = (e, dataLines, vMax) =>{
   e.selectAll("path")
       .data(dataLines)
       .join(enter => enter.append("path")
-          .attr("d", (d)=>{return d3.line()([[d.x,d.y],[d.x-d.len,d.y+d.len]])})
+          .attr("d", (d)=>{return d3.line()([[d.x+d.len,d.y-d.len],[d.x-d.len,d.y+d.len]])})
           .attr("stroke", (d) => {return d.colour})
           .attr("stroke-width", stroke)
           .attr("stroke-linecap","round"),
-          update => update.attr("d", (d)=>{return d3.line()([[d.x,d.y],[d.x-d.len,d.y+d.len]])})
+          update => update.attr("d", (d)=>{return d3.line()([[d.x+d.len,d.y-d.len],[d.x-d.len,d.y+d.len]])})
       )
 }
