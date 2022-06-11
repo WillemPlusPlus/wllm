@@ -43,7 +43,7 @@ const scrollAnimation = (scrollPos,) => {
 const openAbout = (e) => {
 
     // Get all elements with class="tabcontent" and hide them
-    const id = e.currentTarget.id
+    const id = e.currentTarget.id+"Content"
     let tabContent = document.getElementsByClassName("tabcontent");
     for(let i = 0; i<tabContent.length; i++){
         if(tabContent[i].id == id){
@@ -55,9 +55,8 @@ const openAbout = (e) => {
     let tabs = document.getElementsByClassName("tab");
     for(let i = 0; i<tabs.length; i++){tabs[i].className.replace(" active", "");}
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById().getElementById(e.currentTarget.id)
     e.currentTarget.className += " active";
-  }
+}
 
 let tabs = document.getElementsByClassName("tab");
 for(let i = 0; i<tabs.length; i++){
@@ -76,4 +75,4 @@ document.addEventListener('scroll', (e) => {
     ticking = true;
   }
 });
-openAbout({"currentTarget":document.getElementById("About")})
+openAbout({"currentTarget":document.getElementById("about")})

@@ -109,21 +109,7 @@
       .tabs button {
         width: 25%;
         float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-      }
 
-      /* Change background color of buttons on hover */
-      .tabs button:hover {
-        background-color: #ddd;
-      }
-
-      /* Create an active/current tablink class */
-      .tabs button.active {
-        background-color: #ccc;
       }
 
       /* Style the tab content */
@@ -136,7 +122,8 @@
       button {
         display: inline-block;
         border: none;
-        padding: 1rem 2rem;
+        outline: none;
+        padding: 14px 16px;
         margin: 0;
         text-decoration: none;
         background: #0069ed;
@@ -147,6 +134,7 @@
         transition: background 250ms ease-in-out, transform 150ms ease;
         -webkit-appearance: none;
         -moz-appearance: none;
+        transition: 0.3s;
       }
       button:hover,
       button:focus {
@@ -171,41 +159,41 @@
     </div>
     <div class = "page" id = "page1">
       <div id = "blockwrapper">
-        <div class = blockLeft id = blockc1r1><a href="mailto:someone@yoursite.com">hello</a></div> 
-        <div class = blockRight id = blockc2r1>// thanks for checking in! </div> 
+        <div class = blockLeft id = blockc1r1><a href="mailto:someone@yoursite.com">hello</a></div>
+        <div class = blockRight id = blockc2r1>// thanks for checking in! </div>
         <div class = blockLeft id = blockc1r2><a href="mailto:someone@yoursite.com">@wllm</a></div>
-        <div class = blockRight id = blockc2r2>// my name is Willem Meyer,</div> 
-        <div class = blockLeft id = blockc1r3><a href="mailto:someone@yoursite.com">.info</a></div> 
-        <div class = blockRight id = blockc2r3>// software engineer in the making</div> 
+        <div class = blockRight id = blockc2r2>// my name is Willem Meyer,</div>
+        <div class = blockLeft id = blockc1r3><a href="mailto:someone@yoursite.com">.info</a></div>
+        <div class = blockRight id = blockc2r3>// software engineer in the making</div>
       </div>
     </div>
     <div class = "page" id = "page2">
       <div id = "aboutwrapper">
           <img src="img/wllmportatait1.png" width = 546 height = 546>
-          <div class = "about">
+          <div class = "aboutContent">
             <div class = "tabs">
-              <button class = "tab" id = "About">About </button>
-              <button class = "tab" id = "DataScience">Data</button>
-              <button class = "tab" id = "GraphicDesign">Design</button>
-              <button class = "tab" id = "Proficiencies">Skills</button>
+              <button class = "tab" id = "about">About</button>
+              <button class = "tab" id = "data">Data</button>
+              <button class = "tab" id = "design">Design</button>
+              <button class = "tab" id = "skillset">Skillset</button>
             </div>
-            <div id="About" class="tabcontent">
+            <div id="aboutContent" class="tabcontent">
               <h3>About</h3>
               <p>Will here! I’m a student/programmer/graphic designer/cyclist. I’m about to complete my Masters of Software Engineering at the University of Western Australia. I’m looking to fulfil the course’s practicum component by interning for an organisation with a software focus. I hope to infiltrate such as organisation and make myself indispensable, learning all of their secrets so that once I am a qualified engineer they will have no choice but to keep me around. If you are part of such an organisation, either in Perth or abroad, please ignore the preceding line and email me!
               </p>
             </div>
             
-            <div id="DataScience" class="tabcontent">
+            <div id="dataContent" class="tabcontent">
               <h3>Data Science</h3>
               <p>Data Science & Machine Learning: My masters coursework and research has afforded me the flexibility to pursue a specialisation in data driven computing. I’ve gained experience with everyone stage of data pipelines from collection, cleaning and storage to analysis, visualisation and transformation. During my dissertation I conducted an experiment looking into the future of automated assessment marking for free-form diagrams. I constructed a semantic segmentation model built around the U-net CNN architecture. I developed software for the processing of exam papers and developed tooling for the labelling and augmentation of images for supervised learning tasks.</p>
             </div>
             
-            <div id="GraphicDesign" class="tabcontent">
+            <div id="designContent" class="tabcontent">
               <h3>Graphic Design</h3>
               <p>My work in graphic design started as a hobby. When I was elected as publications office at University Hall. I was able to hone my skills producing promotional posters, shirts, logos, banners and multimedia. The role also so me act as photographer, social media manager and marketing manager for the college’s Resident’s Club as we ran social, community and sporting events for the more than 700 residents.
                 Owing to our successes at Unihall I was taken on as a graphic designer at Bloom UWA. Bloom provided support services, events and office space to start-ups in the UWA community and our team promoted these services and events as well as providing graphic design services to the start-ups themselves. As the marketing and communications teams grew, I became team lead in charge of a small team of designers and photographers.</p>
             </div>
-            <div id="Proficiencies" class="tabcontent">
+            <div id="skillsetContent" class="tabcontent">
               <h3>Proficiencies</h3>
               <p>Machine Learning(PyTorch, TensorFLow), Data Science(Python, R, Matlab, D3.js), Graphic Design(Adobe Photoshop, Lightroom, Illustrator),  Web technologies(HTML/JS, Node.js),Cloud Computing (AWS/Docker), Database management (SQL), Systems, embedded systems and OOP (C,C#, Java), Microsoft Office</p>
             </div>
