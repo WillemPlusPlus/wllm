@@ -105,13 +105,6 @@
         overflow: hidden;
       }
 
-      /* Style the buttons that are used to open the tab content */
-      .tabs button {
-        width: 25%;
-        float: left;
-
-      }
-
       /* Style the tab content */
       .tabcontent {
         display: none;
@@ -122,7 +115,6 @@
       button {
         display: inline-block;
         border: none;
-        outline: none;
         padding: 14px 16px;
         margin: 0;
         text-decoration: none;
@@ -142,13 +134,24 @@
       }
 
       button:focus {
-          outline: 1px solid #fff;
+          outline: 1px solid #ccc;
           outline-offset: -4px;
       }
 
-      button:active {
-          transform: scale(0.99);
+      .tabs button.active {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-bottom: none;
       }
+      
+      .tabs button {
+        outline: none;
+        width: 25%;
+        float: left;
+        background: #0069ed;
+      }
+
+  
 
 
     </style>
