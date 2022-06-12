@@ -1,4 +1,4 @@
-import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground } from "./svgDraw";
+import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown } from "./svgDraw";
 
 let vh = window.innerHeight
 let vw = window.innerWidth
@@ -10,14 +10,13 @@ const bannerSize = vMax*25
 const svgBG = d3.select("#background")
 const svgLogo = d3.select("#banner")
 const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
-svgBanner.attr("mask", "url(#logoClip)")
 const svgMask = svgLogo.append("mask")
     .attr("id", "logoClip")
 svgMask.append("rect")
     .attr("width", bannerSize)
     .attr("height", bannerSize)
     .attr("fill", "#fff")
-    
+svgBanner.attr("mask", "url(#logoClip)")
 let svgLines = svgBG.append("svg").attr("id", "lines")
 let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vMax, vw, 0, [])
 createBackground(svgLines, dataLines, vMax)
@@ -78,3 +77,16 @@ document.addEventListener('scroll', (e) => {
   }
 });
 openAbout({"currentTarget":document.getElementById("about")})
+
+const svgMarkdowns = d3.select("#workWrapper").selectAll(".workOffer")
+    .data([{text:"Sale"},{text:"Great Value"},{text:"Popular"}])
+    .append("svg")
+        .attr("class", "markdown")
+        .attr("width",vMax*20)
+        .attr("height",vMax*5)
+        
+
+console.log(svgMarkdowns)
+svgMarkdowns.each(createMarkdown)
+
+
