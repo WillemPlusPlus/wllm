@@ -80,8 +80,10 @@ openAbout({"currentTarget":document.getElementById("about")})
 
 const svgMarkdowns = d3.select("#workWrapper").selectAll(".workOffer")
     .data([{text:"Sale"},{text:"Great Value"},{text:"Popular"}])
-    .append("svg")
+    .append("div")
         .attr("class", "markdown")
+    .append("svg")
+        .attr("class", "svgMarkdown")
         .attr("width",vMax*20)
         .attr("height",vMax*5)
         
