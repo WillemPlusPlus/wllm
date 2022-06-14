@@ -77,18 +77,15 @@ document.addEventListener('scroll', (e) => {
   }
 });
 openAbout({"currentTarget":document.getElementById("about")})
-
-const svgMarkdowns = d3.select("#workWrapper").selectAll(".workOffer")
-    .data([{text:"Sale"},{text:"Great Value"},{text:"Popular"}])
+const w = vMax*20
+const h = vMax*5
+const divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
+    .data([{text:"Sale",w:w,h:h},{text:"Great Value",w:w,h:h},{text:"Popular",w:w,h:h}])
     .append("div")
         .attr("class", "markdown")
-    .append("svg")
-        .attr("class", "svgMarkdown")
-        .attr("width",vMax*20)
-        .attr("height",vMax*5)
-        
 
-console.log(svgMarkdowns)
-svgMarkdowns.each(createMarkdown)
+divMarkdown.each(createMarkdown)
+
+console.log(divMarkdown)
 
 

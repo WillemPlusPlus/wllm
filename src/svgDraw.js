@@ -96,15 +96,20 @@ export const createBackground = (e, dataLines, vMax) =>{
 
 export const createMarkdown = (e,i,d) => {
   const root = d3.select(d[i])
-
-  const w = Number(root.attr("width"))
-  const h = Number(root.attr("height"))
+  console.log(root)
   const toPoint = (x,y) => {return " " + x.toString() +","+ y.toString() }
-  const poly = "0,0"+ toPoint(w+h,0) + toPoint(w+h,h) + toPoint(h,h)
-  root.append("polygon")
-  .data([poly])
-    .attr("stroke" , "none")
-    .attr("fill" , "red")
-    .attr("points", poly)
+  const poly = "0,0"+ toPoint(e.w+e.h,0) + toPoint(e.w+e.h,e.h) + toPoint(e.h,e.h)
+  root.append("svg")
+    .attr("class", "svgMarkdown")
+    .attr("width",e.w)
+    .attr("height",e.h)
+    .append("polygon")
+      .data([poly])
+      .attr("stroke" , "none")
+      .attr("fill" , "red")
+      .attr("points", poly)
+  root.append("p")
+    .attr("class","pMarkdown")
+    .text(e.text)
 
 }
