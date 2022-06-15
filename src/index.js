@@ -80,7 +80,9 @@ openAbout({"currentTarget":document.getElementById("about")})
 const w = vMax*20
 const h = vMax*5
 const divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
-    .data([{text:"Sale",w:w,h:h},{text:"Great Value",w:w,h:h},{text:"Popular",w:w,h:h}])
+    .data(
+        [{text:"Sale",w:w,h:h},{text:"Great Value",w:w,h:h},{text:"Popular",w:w,h:h}]
+        )
     .append("div")
         .attr("class", "markdown")
 
