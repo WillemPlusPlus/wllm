@@ -85,16 +85,36 @@ for(const career of careers){
     career.h = h
 }
 
+const createOffer = (e,i,d) => {
+    const root = d3.select(d[i])
+    root.append("div").attr("class",".workHeader")
+    .text(e.textHeading)
+    root.append("div").attr("class",".workStart")
+    .text(e.textPreamble)
+    root.append("div").attr("class",".workRate")
+    root.append("div").attr("class",".workInfo")
+    .text(e.Body)
+    root.append("div").attr("class",".workFooter")
+    .text(e.textFooter)
 
-const divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
+}
+
+let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
     .data(careers)
     .join(
-        enter => 
-        enter.append("div")
-        .attr("class","workOffer")
-        .append("div")
+        enter =>{
+
+        let offer = enter.append("div")
+        .attr("class","workOffer");
+
+        offer.append("div")
         .attr("class", "markdown")
-        .each(createMarkdown)
+        .each(createMarkdown);
+
+        offer.each(createOffer);
+
+
+        return offer;}
     )
 
 
