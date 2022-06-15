@@ -1,0 +1,33 @@
+[{
+    
+    
+    "pricePreamble":"$",
+    "pricePostamble":"/hour",
+    "price":"25",
+    "textPreamble": "starting at",
+    "textMarkdown":"POPULAR",
+    "textBody":"Need a position filled? I have diverse experience and am always looking to pick up skills in new industries.",
+    "textHeading":"Casual & Parttime",
+    "textFooter":""
+
+},
+{
+    "pricePreamble":"",
+    "pricePostamble":"",
+    "price":"Free*",
+    "textPreamble": "Limited time offer",
+    "textMarkdown":"GREAT VALUE",
+    "textBody":"Does your organisation have a software focus? Paid and unpaid internship positions are exactly what I’m after! Upon graduation, I will be available to your organisation as a junior software engineer.",
+    "textHeading":"Software Internships",
+    "textFooter":"*First 450 hours"
+},
+{
+    "pricePreamble":"$",
+    "pricePostamble":"/hour",
+    "price":"35",
+    "textPreamble": "starting at",
+    "textMarkdown":"DISCOUNT",
+    "textBody":"Looking to commission? I can help in a wide range of areas including machine learning, data processing/analysis/visualisation, graphic design, and web design. Owing to my inexperience, my rate is heavily discounted as I build my portfolio!",
+    "textHeading":"Commisions",
+    "textFooter":""
+}]

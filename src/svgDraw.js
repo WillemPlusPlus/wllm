@@ -96,7 +96,7 @@ export const createBackground = (e, dataLines, vMax) =>{
 
 export const createMarkdown = (e,i,d) => {
   const root = d3.select(d[i])
-  console.log(root)
+  console.log(root,e, i)
   const toPoint = (x,y) => {return " " + x.toString() +","+ y.toString() }
   const poly = "0,0"+ toPoint(e.w+e.h,0) + toPoint(e.w+e.h,e.h) + toPoint(e.h,e.h)
   root.append("svg")
@@ -110,6 +110,6 @@ export const createMarkdown = (e,i,d) => {
       .attr("points", poly)
   root.append("p")
     .attr("class","pMarkdown")
-    .text(e.text)
+    .text(e.textMarkdown)
 
 }

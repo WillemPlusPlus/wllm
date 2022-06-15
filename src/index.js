@@ -1,5 +1,5 @@
-import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown } from "./svgDraw";
-
+import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown } from "./svgDraw"
+const careers = require("./offers.json")
 let vh = window.innerHeight
 let vw = window.innerWidth
 const vMax = Math.max(vh,vw)/100
@@ -79,14 +79,24 @@ document.addEventListener('scroll', (e) => {
 openAbout({"currentTarget":document.getElementById("about")})
 const w = vMax*20
 const h = vMax*5
-const divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
-    .data(
-        [{text:"Sale",w:w,h:h},{text:"Great Value",w:w,h:h},{text:"Popular",w:w,h:h}]
-        )
-    .append("div")
-        .attr("class", "markdown")
 
-divMarkdown.each(createMarkdown)
+for(const career of careers){
+    career.w = w
+    career.h = h
+}
+
+
+const divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
+    .data(careers)
+    .join(
+        enter => 
+        enter.append("div")
+        .attr("class","workOffer")
+        .append("div")
+        .attr("class", "markdown")
+        .each(createMarkdown)
+    )
+
 
 console.log(divMarkdown)
 
