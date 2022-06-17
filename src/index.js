@@ -32,7 +32,7 @@ const scrollAnimation = (scrollPos) => {
 
     const yBuffTop = 50
     const yBuffBot = 5000
-    const yFac = 0.5
+    const yFac = 0.6
     let yPos = Math.max(Math.min(scrollPos*yFac,yBuffBot), yBuffTop)
     dataLines = createBackgroundData(svgBG,6,d3.schemeAccent, vw, vh, yPos, dataLines)
     createBackground(svgLines, dataLines)
