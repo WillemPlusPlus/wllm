@@ -126,6 +126,5 @@ let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
     )
 
 
-console.log(divMarkdown)
 
 

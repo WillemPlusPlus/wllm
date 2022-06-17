@@ -98,10 +98,10 @@ export const createMarkdown = (e,i,d) => {
   const root = d3.select(d[i])
   console.log(root,e, i)
   const toPoint = (x,y) => {return " " + x.toString() +","+ y.toString() }
-  const poly = "0,0"+ toPoint(e.w+e.h,0) + toPoint(e.w+e.h,e.h) + toPoint(e.h,e.h)
+  const poly = "0,0"+ toPoint(e.w+e.h,0) + toPoint(e.w,e.h) + toPoint(0,e.h)
   root.append("svg")
     .attr("class", "svgMarkdown")
-    .attr("width",e.w)
+    .attr("width",e.w+e.h)
     .attr("height",e.h)
     .append("polygon")
       .data([poly])
