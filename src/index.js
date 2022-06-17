@@ -77,8 +77,8 @@ document.addEventListener('scroll', (e) => {
   }
 });
 openAbout({"currentTarget":document.getElementById("about")})
-const w = vMax*20
-const h = vMax*5
+const w = vh*0.2
+const h = vh*0.05
 
 for(const career of careers){
     career.w = w
