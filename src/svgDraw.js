@@ -7,7 +7,6 @@ export const createLine = (e,d,c,s) => {
   }
 
   export const createLogo = (e,height, offsetX, offsetY) =>{
-    console.log(offsetX,offsetY)
     const createText = (e, text,x,y) => {
       e.append("text")
         .attr("class", "bannerText")
@@ -39,17 +38,17 @@ export const createLine = (e,d,c,s) => {
         }
     })
 
-    createText(e,"// WILLEM MEYER",7*offsetX,2.25*offsetY)
-    createText(e, "// Perth, WA",7*offsetX,4.5*offsetY)
+    createText(e,"// WILLEM MEYER",2*offsetX,2.25*offsetY)
+    createText(e, "// Perth, WA",2*offsetX,3.5*offsetY)
     
 }
 
-export const createBackgroundData = (e, n, colours, vMax, vw, yPos, dataLines) => {
-  const spacing = vMax*5
+export const createBackgroundData = (e, n, colours, vw, vh, yPos, dataLines) => {
+  const spacing = vh*0.05
   const sinC = 0.707//0.866
-  const lenMin = vMax*15
-  const lenRange = vMax*15
-  const startMax = vMax*5
+  const lenMin = vh*0.15
+  const lenRange = vh*0.15
+  const startMax = vh*0.05
   const offsetX = vw-startMax*0.5*n*0.5 - yPos
   const offestY = -startMax*sinC*n*0.5 + yPos
 

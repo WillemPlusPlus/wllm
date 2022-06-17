@@ -39,15 +39,17 @@
         padding:0;
         transform: skew(-10deg);
         text-align: left;
-        font-size: 1/2vmax;
-        letter-spacing: 1/3em;
-        word-spacing: -1/3em;
+        font-size: 0.6em;
+        letter-spacing: 0.2em;
+        word-spacing: -0.3em;
         color: white;
         font-weight: bold;
       }
 
       #background{
-        position: absolute;
+        position: fixed;
+        left: 0%;
+        top: 0%;
       }
       #banner{
         position: fixed;
@@ -59,7 +61,7 @@
         display: grid;
         grid-template-columns: 600px 600px;
         top: 60%;
-        left: 40%;
+        left: 30%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
         row-gap: 0;
@@ -94,7 +96,7 @@
         position: absolute;
         display: grid;
         grid-template-columns: 400px 400px 400px;
-        top: 250%;
+        top: 260%;
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
@@ -250,7 +252,7 @@
     </style>
   </head>
   <body>
-    <svg id = "background" width="100vw" height="200vh"></svg>
+    <svg id = "background" width="100vw" height="100vh"></svg>
     <div class = "page" id = "page1">
       <div id = "blockwrapper">
         <div class = blockLeft id = blockc1r1><a href="mailto:someone@yoursite.com">hello</a></div>

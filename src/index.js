@@ -4,7 +4,7 @@ let vh = window.innerHeight
 let vw = window.innerWidth
 const vMax = Math.max(vh,vw)/100
 const vMin = Math.min(vh,vw)/100
-const bannerSize = vMax*25
+const bannerSize = vh*0.25
 
 
 const svgBG = d3.select("#background")
@@ -21,20 +21,20 @@ let svgLines = svgBG.append("svg").attr("id", "lines")
 let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vMax, vw, 0, [])
 createBackground(svgLines, dataLines, vMax)
 
-createLogo(svgMask,vMax*5,vMax*0.5,vMax*0.5)
+createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
 
 
 
 let lastKnownScrollPosition = 0;
 let ticking = false;
 
-const scrollAnimation = (scrollPos,) => {
+const scrollAnimation = (scrollPos) => {
 
     const yBuffTop = 50
-    const yBuffBot = 2500
-    const yFac = 1.6
+    const yBuffBot = 5000
+    const yFac = 0.5
     let yPos = Math.max(Math.min(scrollPos*yFac,yBuffBot), yBuffTop)
-    dataLines = createBackgroundData(svgBG,6,d3.schemeAccent,vMax, vw, yPos, dataLines)
+    dataLines = createBackgroundData(svgBG,6,d3.schemeAccent, vw, vh, yPos, dataLines)
     createBackground(svgLines, dataLines)
 
 }
