@@ -87,14 +87,21 @@ for(const career of careers){
 
 const createOffer = (e,i,d) => {
     const root = d3.select(d[i])
-    root.append("div").attr("class",".workHeader")
+    root.append("div").attr("class","workHeader")
     .text(e.textHeading)
-    root.append("div").attr("class",".workStart")
+    root.append("div").attr("class","workStart")
     .text(e.textPreamble)
-    root.append("div").attr("class",".workRate")
-    root.append("div").attr("class",".workInfo")
-    .text(e.Body)
-    root.append("div").attr("class",".workFooter")
+    let rate = root.append("div").attr("class","workRate")
+    rate.append("span").attr("class","pricePreamble").text(e.pricePreamble)
+    rate.append("span").attr("class","price").text(e.price)
+    rate.append("span").attr("class","pricePostamble").text(e.pricePostamble)
+
+    root.append("button").attr("class", "workButton").attr("type", "button")
+    .text("Email Me")
+    
+    root.append("div").attr("class","workInfo")
+    .text(e.textBody)
+    root.append("div").attr("class","workFooter")
     .text(e.textFooter)
 
 }
@@ -112,6 +119,7 @@ let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
         .each(createMarkdown);
 
         offer.each(createOffer);
+
 
 
         return offer;}
