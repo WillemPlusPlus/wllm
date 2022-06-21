@@ -44,10 +44,10 @@ export const createLine = (e,d,c,s) => {
 }
 
 export const createBackgroundData = (e, n, colours, vw, vh, yPos, dataLines) => {
-  const spacing = vh*0.05
+  const spacing = vh*0.1
   const sinC = 0.707//0.866
   const lenMin = vh*0.15
-  const lenRange = vh*0.15
+  const lenRange = vh*0.25
   const startMax = vh*0.05
   const offsetX = vw-startMax*0.5*n*0.5 - yPos
   const offestY = -startMax*sinC*n*0.5 + yPos
