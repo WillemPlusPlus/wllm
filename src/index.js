@@ -4,7 +4,7 @@ let vh = window.innerHeight
 let vw = window.innerWidth
 const vMax = Math.max(vh,vw)/100
 const vMin = Math.min(vh,vw)/100
-const bannerSize = vh*0.25
+const bannerSize = vh*0.35
 
 
 const svgBG = d3.select("#background")
