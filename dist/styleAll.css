@@ -17,6 +17,7 @@ html,body,button,div{
     padding:0;
   }
   .page{
+    position: relative;
     width : 100vw;
     height : 100vh;
   }
@@ -38,10 +39,12 @@ html,body,button,div{
     left: 0%;
     top: 0%;
   }
-  #banner{
+  #bannerwrapper{
     position: fixed;
     left: 0%;
     top: 0%;
+    width: 35vw;
+    height: 35vw;
   }
   #blockwrapper{
     position: absolute;

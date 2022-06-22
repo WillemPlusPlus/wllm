@@ -4,11 +4,13 @@ let vh = window.innerHeight
 let vw = window.innerWidth
 const vMax = Math.max(vh,vw)/100
 const vMin = Math.min(vh,vw)/100
-const bannerSize = vh*0.35
-
-
+const divBanner = d3.select("#bannerwrapper")
+const bannerSize = Number(divBanner.style('width').slice(0, -2))
+console.log(bannerSize)
 const svgBG = d3.select("#background")
+
 const svgLogo = d3.select("#banner")
+
 const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
 const svgMask = svgLogo.append("mask")
     .attr("id", "logoClip")
