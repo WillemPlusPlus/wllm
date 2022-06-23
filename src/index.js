@@ -1,34 +1,6 @@
-import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown } from "./svgDraw"
+import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown, updateBannerBackground} from "./svgDraw"
 const careers = require("./offers.json")
-let vh = window.innerHeight
-let vw = window.innerWidth
-const vMax = Math.max(vh,vw)/100
-const vMin = Math.min(vh,vw)/100
-const divBanner = d3.select("#bannerwrapper")
-const bannerSize = Number(divBanner.style('width').slice(0, -2))
-console.log(bannerSize)
-const svgBG = d3.select("#background")
 
-const svgLogo = d3.select("#banner")
-
-const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
-const svgMask = svgLogo.append("mask")
-    .attr("id", "logoClip")
-svgMask.append("rect")
-    .attr("width", bannerSize)
-    .attr("height", bannerSize)
-    .attr("fill", "#fff")
-svgBanner.attr("mask", "url(#logoClip)")
-let svgLines = svgBG.append("svg").attr("id", "lines")
-let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vw, vh, 0, [])
-createBackground(svgLines, dataLines, vMax)
-
-createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
-
-
-
-let lastKnownScrollPosition = 0;
-let ticking = false;
 
 const scrollAnimation = (scrollPos) => {
 
@@ -40,7 +12,6 @@ const scrollAnimation = (scrollPos) => {
     createBackground(svgLines, dataLines)
 
 }
-
 
 
 const openAbout = (e) => {
@@ -61,31 +32,10 @@ const openAbout = (e) => {
     e.currentTarget.className += " active";
 }
 
-let tabs = document.getElementsByClassName("tab");
-for(let i = 0; i<tabs.length; i++){
-    tabs[i].addEventListener("click",openAbout);
-}
 
-document.addEventListener('scroll', (e) => {
-  lastKnownScrollPosition = window.scrollY;
 
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-        scrollAnimation(lastKnownScrollPosition);
-      ticking = false;
-    });
 
-    ticking = true;
-  }
-});
-openAbout({"currentTarget":document.getElementById("about")})
-const w = vh*0.2
-const h = vh*0.05
 
-for(const career of careers){
-    career.w = w
-    career.h = h
-}
 
 const createOffer = (e,i,d) => {
     const root = d3.select(d[i])
@@ -108,6 +58,57 @@ const createOffer = (e,i,d) => {
 
 }
 
+
+
+const updateLayout  = () => {
+    vh = window.innerHeight
+    vw = window.innerWidth
+    vMax = Math.max(vh,vw)/100
+    vMin = Math.min(vh,vw)/100
+    bannerSize = Number(divBanner.style('width').slice(0, -2))
+    updateBannerBackground(svgLogo,bannerSize)
+    dataLines = createBackgroundData(svgBG,6,d3.schemeDark2, vw, vh, yPos, dataLines)
+    createBackground(svgLines, dataLines)
+}
+
+let vw, vh, vMax, vMin, bannerSize
+bannerSize = Number(divBanner.style('width').slice(0, -2))
+vh = window.innerHeight
+vw = window.innerWidth
+vMax = Math.max(vh,vw)/100
+vMin = Math.min(vh,vw)/100
+const divBanner = d3.select("#bannerwrapper")
+const svgBG = d3.select("#background")
+const svgLogo = d3.select("#banner")
+const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
+const svgMask = svgLogo.append("mask")
+    .attr("id", "logoClip")
+
+svgMask.append("rect")
+    .attr("width", bannerSize)
+    .attr("height", bannerSize)
+    .attr("fill", "#fff")
+svgBanner.attr("mask", "url(#logoClip)")
+let svgLines = svgBG.append("svg").attr("id", "lines")
+let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vw, vh, 0, [])
+createBackground(svgLines, dataLines, vMax)
+
+createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
+
+
+
+let lastKnownScrollPosition = 0;
+let ticking = false;
+
+openAbout({"currentTarget":document.getElementById("about")})
+const w = vh*0.2
+const h = vh*0.05
+
+for(const career of careers){
+    career.w = w
+    career.h = h
+}
+
 let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
     .data(careers)
     .join(
@@ -127,6 +128,23 @@ let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
         return offer;}
     )
 
+window.onresize = updateLayout;
 
+let tabs = document.getElementsByClassName("tab");
+for(let i = 0; i<tabs.length; i++){
+    tabs[i].addEventListener("click",openAbout);
+}
 
+document.addEventListener('scroll', (e) => {
+    lastKnownScrollPosition = window.scrollY;
+  
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+          scrollAnimation(lastKnownScrollPosition);
+        ticking = false;
+      });
+  
+      ticking = true;
+    }
+  });
 

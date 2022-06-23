@@ -78,6 +78,11 @@ export const createBannerBackground = (e,s,c) => {
     .attr("points", triangle)
 }
 
+export const updateBannerBackground = (e,s) => {
+  const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
+  return e.attr("points", triangle)
+}
+
 export const createBackground = (e, dataLines, vMax) =>{
 
   const stroke = vMax*10
@@ -104,7 +109,8 @@ export const createMarkdown = (e,i,d) => {
     .attr("height",e.h)
     .append("polygon")
       .data([poly])
-      .attr("stroke" , "none")
+      .attr("stroke" , "white")
+      .attr("stroke-width", 20)
       .attr("fill" , "red")
       .attr("points", poly)
   root.append("p")
