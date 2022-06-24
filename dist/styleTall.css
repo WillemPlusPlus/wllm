@@ -1,4 +1,7 @@
 @media screen and (max-width: 800px) {
+  html, body{
+    height: 100%; overflow: hidden
+  }
     #blockwrapper {
       grid-template-columns: 90%;
       left: 50%

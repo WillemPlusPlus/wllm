@@ -10,6 +10,8 @@ html,body,button,div{
   }
   svg{
     position: absolute;
+    left:0%;
+    top:0%;
   }
 
   div{
@@ -228,6 +230,17 @@ html,body,button,div{
     left: -55%;
     z-index: 1;
     font-weight: 700;
+  }
+  #scrollButton{
+    position:fixed;
+    left: 50%;
+
+  }
+  .scrollUp{
+    top: 10%;
+  }
+  .scrollDown{
+    top: 90%;
   }
   
 

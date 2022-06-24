@@ -4,8 +4,8 @@ const careers = require("./offers.json")
 
 const scrollAnimation = (scrollPos) => {
 
-    const yBuffTop = 50
-    const yBuffBot = 5000
+    const yBuffTop = vh*0.01
+    const yBuffBot = vh*2.9
     const yFac = 0.6
     let yPos = Math.max(Math.min(scrollPos*yFac,yBuffBot), yBuffTop)
     dataLines = createBackgroundData(svgBG,6,d3.schemeDark2, vw, vh, yPos, dataLines)
@@ -72,12 +72,12 @@ const updateLayout  = () => {
 }
 
 let vw, vh, vMax, vMin, bannerSize
-bannerSize = Number(divBanner.style('width').slice(0, -2))
 vh = window.innerHeight
 vw = window.innerWidth
 vMax = Math.max(vh,vw)/100
 vMin = Math.min(vh,vw)/100
 const divBanner = d3.select("#bannerwrapper")
+bannerSize = Number(divBanner.style('width').slice(0, -2))
 const svgBG = d3.select("#background")
 const svgLogo = d3.select("#banner")
 const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
@@ -94,7 +94,6 @@ let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vw, vh, 0, [])
 createBackground(svgLines, dataLines, vMax)
 
 createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
-
 
 
 let lastKnownScrollPosition = 0;
@@ -137,6 +136,7 @@ for(let i = 0; i<tabs.length; i++){
 
 document.addEventListener('scroll', (e) => {
     lastKnownScrollPosition = window.scrollY;
+    console.log(lastKnownScrollPosition)
   
     if (!ticking) {
       window.requestAnimationFrame(() => {
