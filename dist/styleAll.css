@@ -18,12 +18,23 @@ html,body,button,div{
     margin:0;
     padding:0;
   }
+  .flip{
+    transform: scaleX(-1);
+  }
   .page{
-    position: relative;
+    position: absolute;
     width : 100vw;
     height : 100vh;
+    left: 0vw;
   }
 
+  #page2{
+    top:100vh;
+
+  }
+  #page3{
+    top:200vh
+  }
   .bannerText{
     margin:0;
     padding:0;
@@ -53,7 +64,7 @@ html,body,button,div{
     display: grid;
     grid-template-columns: 600px 600px;
     top: 60%;
-    left: 30%;
+    left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
     row-gap: 0;
@@ -66,7 +77,7 @@ html,body,button,div{
     position: absolute;
     display: grid;
     grid-template-columns: 600px 600px;
-    top: 150%;
+    top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -88,7 +99,7 @@ html,body,button,div{
     position: absolute;
     display: grid;
     grid-template-columns: 400px 400px 400px;
-    top: 260%;
+    top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -231,16 +242,17 @@ html,body,button,div{
     z-index: 1;
     font-weight: 700;
   }
-  #scrollButton{
+  .scrollButton{
     position:fixed;
+    display: block;
     left: 50%;
 
   }
-  .scrollUp{
-    top: 10%;
+  #scrollUp{
+    top: 10vh;
   }
-  .scrollDown{
-    top: 90%;
+  #scrollDown{
+    top: 90vh;
   }
   
 

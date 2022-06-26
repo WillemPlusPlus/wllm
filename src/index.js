@@ -2,6 +2,46 @@ import { createLine, createLogo, createBackgroundData, createBannerBackground, c
 const careers = require("./offers.json")
 
 
+const onScroll = () => {
+    lastKnownScrollPosition = window.scrollY;
+    scrollFocus = Math.floor(lastKnownScrollPosition/window.innerHeight)
+    console.log(lastKnownScrollPosition,scrollFocus)
+  
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+            
+            toggleScrollButtons(scrollFocus)
+            scrollAnimation(lastKnownScrollPosition);
+        ticking = false;
+      });
+  
+      ticking = true;
+    }
+  }
+
+const toggleScrollButtons = (scrollFoc) => {
+    buttonUp.style.display = 'block';
+    buttonDown.style.display = 'block';
+    if(scrollFoc==0){
+        buttonUp.style.display = 'none';
+    }
+    if(scrollFoc==2){
+        buttonDown.style.display = 'none';
+    }
+}
+const scrollUp = () => {
+    onScroll()
+    let y = (scrollFocus-1)*window.innerHeight
+    window.scrollTo(0, y)
+}
+
+const scrollDown = () => {
+    onScroll()
+    let y = (scrollFocus+1)*window.innerHeight
+    console.log(y)
+    window.scrollTo(0, y)
+}
+
 const scrollAnimation = (scrollPos) => {
 
     const yBuffTop = vh*0.01
@@ -32,11 +72,6 @@ const openAbout = (e) => {
     e.currentTarget.className += " active";
 }
 
-
-
-
-
-
 const createOffer = (e,i,d) => {
     const root = d3.select(d[i])
     root.append("div").attr("class","workHeader")
@@ -58,8 +93,6 @@ const createOffer = (e,i,d) => {
 
 }
 
-
-
 const updateLayout  = () => {
     vh = window.innerHeight
     vw = window.innerWidth
@@ -71,6 +104,7 @@ const updateLayout  = () => {
     createBackground(svgLines, dataLines)
 }
 
+let scrollFocus = 1
 let vw, vh, vMax, vMin, bannerSize
 vh = window.innerHeight
 vw = window.innerWidth
@@ -103,10 +137,13 @@ openAbout({"currentTarget":document.getElementById("about")})
 const w = vh*0.2
 const h = vh*0.05
 
+
 for(const career of careers){
     career.w = w
     career.h = h
 }
+
+
 
 let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
     .data(careers)
@@ -134,17 +171,12 @@ for(let i = 0; i<tabs.length; i++){
     tabs[i].addEventListener("click",openAbout);
 }
 
-document.addEventListener('scroll', (e) => {
-    lastKnownScrollPosition = window.scrollY;
-    console.log(lastKnownScrollPosition)
-  
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-          scrollAnimation(lastKnownScrollPosition);
-        ticking = false;
-      });
-  
-      ticking = true;
-    }
-  });
 
+
+
+document.addEventListener('scroll', onScroll);
+
+let buttonUp = document.getElementById("scrollUp")
+let buttonDown = document.getElementById("scrollDown")
+buttonUp.onclick = scrollUp;
+buttonDown.onclick = scrollDown;
