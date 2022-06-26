@@ -1,7 +1,5 @@
 @media screen and (max-width: 800px) {
-  html, body{
-    height: 100%; overflow: hidden
-  }
+
     #blockwrapper {
       grid-template-columns: 90%;
       left: 50%
@@ -16,5 +14,17 @@
     #bannerwrapper{
       width: 45vw;
       height: 45vw;
+    }
+
+    #aboutwrapper {
+      grid-template-columns: 90%;
+    }
+    #workWrapper {
+      grid-template-columns: 400px;
+      top: 150%;
+      row-gap: 5rem;
+    }
+    .imgwrapper{
+      width: 50%;
     }
 }
