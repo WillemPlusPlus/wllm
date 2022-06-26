@@ -1,44 +1,57 @@
-import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown } from "./svgDraw"
+import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown, updateBannerBackground} from "./svgDraw"
 const careers = require("./offers.json")
-let vh = window.innerHeight
-let vw = window.innerWidth
-const vMax = Math.max(vh,vw)/100
-const vMin = Math.min(vh,vw)/100
-const bannerSize = vh*0.35
 
 
-const svgBG = d3.select("#background")
-const svgLogo = d3.select("#banner")
-const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
-const svgMask = svgLogo.append("mask")
-    .attr("id", "logoClip")
-svgMask.append("rect")
-    .attr("width", bannerSize)
-    .attr("height", bannerSize)
-    .attr("fill", "#fff")
-svgBanner.attr("mask", "url(#logoClip)")
-let svgLines = svgBG.append("svg").attr("id", "lines")
-let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vw, vh, 0, [])
-createBackground(svgLines, dataLines, vMax)
+const onScroll = () => {
+    lastKnownScrollPosition = window.scrollY;
+    scrollFocus = Math.floor(lastKnownScrollPosition/window.innerHeight)
+    console.log(lastKnownScrollPosition,scrollFocus)
+  
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+            
+            toggleScrollButtons(scrollFocus)
+            scrollAnimation(lastKnownScrollPosition);
+        ticking = false;
+      });
+  
+      ticking = true;
+    }
+  }
 
-createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
+const toggleScrollButtons = (scrollFoc) => {
+    buttonUp.style.display = 'block';
+    buttonDown.style.display = 'block';
+    if(scrollFoc==0){
+        buttonUp.style.display = 'none';
+    }
+    if(scrollFoc==2){
+        buttonDown.style.display = 'none';
+    }
+}
+const scrollUp = () => {
+    onScroll()
+    let y = (scrollFocus-1)*window.innerHeight
+    window.scrollTo(0, y)
+}
 
-
-
-let lastKnownScrollPosition = 0;
-let ticking = false;
+const scrollDown = () => {
+    onScroll()
+    let y = (scrollFocus+1)*window.innerHeight
+    console.log(y)
+    window.scrollTo(0, y)
+}
 
 const scrollAnimation = (scrollPos) => {
 
-    const yBuffTop = 50
-    const yBuffBot = 5000
+    const yBuffTop = vh*0.01
+    const yBuffBot = vh*2.9
     const yFac = 0.6
     let yPos = Math.max(Math.min(scrollPos*yFac,yBuffBot), yBuffTop)
     dataLines = createBackgroundData(svgBG,6,d3.schemeDark2, vw, vh, yPos, dataLines)
     createBackground(svgLines, dataLines)
 
 }
-
 
 
 const openAbout = (e) => {
@@ -57,32 +70,6 @@ const openAbout = (e) => {
     for(let i = 0; i<tabs.length; i++){tabs[i].className = tabs[i].className.replace(" active", "");}
     // Show the current tab, and add an "active" class to the button that opened the tab
     e.currentTarget.className += " active";
-}
-
-let tabs = document.getElementsByClassName("tab");
-for(let i = 0; i<tabs.length; i++){
-    tabs[i].addEventListener("click",openAbout);
-}
-
-document.addEventListener('scroll', (e) => {
-  lastKnownScrollPosition = window.scrollY;
-
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-        scrollAnimation(lastKnownScrollPosition);
-      ticking = false;
-    });
-
-    ticking = true;
-  }
-});
-openAbout({"currentTarget":document.getElementById("about")})
-const w = vh*0.2
-const h = vh*0.05
-
-for(const career of careers){
-    career.w = w
-    career.h = h
 }
 
 const createOffer = (e,i,d) => {
@@ -106,6 +93,58 @@ const createOffer = (e,i,d) => {
 
 }
 
+const updateLayout  = () => {
+    vh = window.innerHeight
+    vw = window.innerWidth
+    vMax = Math.max(vh,vw)/100
+    vMin = Math.min(vh,vw)/100
+    bannerSize = Number(divBanner.style('width').slice(0, -2))
+    updateBannerBackground(svgLogo,bannerSize)
+    dataLines = createBackgroundData(svgBG,6,d3.schemeDark2, vw, vh, yPos, dataLines)
+    createBackground(svgLines, dataLines)
+}
+
+let scrollFocus = 1
+let vw, vh, vMax, vMin, bannerSize
+vh = window.innerHeight
+vw = window.innerWidth
+vMax = Math.max(vh,vw)/100
+vMin = Math.min(vh,vw)/100
+const divBanner = d3.select("#bannerwrapper")
+bannerSize = Number(divBanner.style('width').slice(0, -2))
+const svgBG = d3.select("#background")
+const svgLogo = d3.select("#banner")
+const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
+const svgMask = svgLogo.append("mask")
+    .attr("id", "logoClip")
+
+svgMask.append("rect")
+    .attr("width", bannerSize)
+    .attr("height", bannerSize)
+    .attr("fill", "#fff")
+svgBanner.attr("mask", "url(#logoClip)")
+let svgLines = svgBG.append("svg").attr("id", "lines")
+let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vw, vh, 0, [])
+createBackground(svgLines, dataLines, vMax)
+
+createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
+
+
+let lastKnownScrollPosition = 0;
+let ticking = false;
+
+openAbout({"currentTarget":document.getElementById("about")})
+const w = vh*0.2
+const h = vh*0.05
+
+
+for(const career of careers){
+    career.w = w
+    career.h = h
+}
+
+
+
 let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
     .data(careers)
     .join(
@@ -125,6 +164,19 @@ let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
         return offer;}
     )
 
+window.onresize = updateLayout;
+
+let tabs = document.getElementsByClassName("tab");
+for(let i = 0; i<tabs.length; i++){
+    tabs[i].addEventListener("click",openAbout);
+}
 
 
 
+
+document.addEventListener('scroll', onScroll);
+
+let buttonUp = document.getElementById("scrollUp")
+let buttonDown = document.getElementById("scrollDown")
+buttonUp.onclick = scrollUp;
+buttonDown.onclick = scrollDown;

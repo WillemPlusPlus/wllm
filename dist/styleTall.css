@@ -1,6 +1,20 @@
 @media screen and (max-width: 800px) {
+  html, body{
+    height: 100%; overflow: hidden
+  }
     #blockwrapper {
-      grid-template-columns: 45% 45%;
-      
+      grid-template-columns: 90%;
+      left: 50%
+    }
+    .blockLeft{
+      text-align: left;
+      font-size: 5rem;
+    }
+    .blockRight{
+      font-size: 0.85rem;
+    }
+    #bannerwrapper{
+      width: 45vw;
+      height: 45vw;
     }
 }
