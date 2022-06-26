@@ -19,7 +19,7 @@ html,body,button,div{
     padding:0;
   }
   .flip{
-    transform: scaleX(-1);
+    transform: scale(-1,-1);
   }
   .page{
     position: absolute;
@@ -56,8 +56,8 @@ html,body,button,div{
     position: fixed;
     left: 0%;
     top: 0%;
-    width: 35vw;
-    height: 35vw;
+    width: 25vw;
+    height: 25vw;
   }
   #blockwrapper{
     position: absolute;
@@ -77,7 +77,7 @@ html,body,button,div{
     position: absolute;
     display: grid;
     grid-template-columns: 600px 600px;
-    top: 50%;
+    top: 60%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -99,7 +99,7 @@ html,body,button,div{
     position: absolute;
     display: grid;
     grid-template-columns: 400px 400px 400px;
-    top: 50%;
+    top: 60%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -246,7 +246,7 @@ html,body,button,div{
     position:fixed;
     display: block;
     left: 50%;
-
+    background:none;
   }
   #scrollUp{
     top: 10vh;
@@ -254,5 +254,20 @@ html,body,button,div{
   #scrollDown{
     top: 90vh;
   }
+
+  .scrollButton:hover,
+  .scrollButton:focus{
+      background:none;
+  }
+  .scrollButton:hover>img,
+  .scrollButton:focus>img{
+     filter:invert(100)
+  }
+  
+  .scrollImg{
+    filter:drop-shadow(0 0 1rem #fff);
+  }
+
+
   
 

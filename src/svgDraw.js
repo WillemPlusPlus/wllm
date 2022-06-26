@@ -109,8 +109,6 @@ export const createMarkdown = (e,i,d) => {
     .attr("height",e.h)
     .append("polygon")
       .data([poly])
-      .attr("stroke" , "white")
-      .attr("stroke-width", 20)
       .attr("fill" , "red")
       .attr("points", poly)
   root.append("p")
