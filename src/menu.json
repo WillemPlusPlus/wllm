@@ -1,0 +1,28 @@
+[
+    {
+        "name": "github",
+        "img": "img/github.svg",
+        "text": "This website is on Github"
+
+    },
+    {
+        "name": "email",
+        "img": "img/email.svg",
+        "text": "Copy my email address"
+
+    },
+    {
+        "name": "randomize",
+        "img": "img/dice.svg",
+        "text": "Randomize!"
+
+    },
+    {
+        "name": "resume",
+        "img": "img/resume.svg",
+        "text": "Check out my resume"
+
+    }
+
+
+]
