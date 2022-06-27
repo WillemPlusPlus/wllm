@@ -62,11 +62,10 @@ html,body,button,div{
   #blockwrapper{
     position: absolute;
     display: grid;
-    grid-template-columns: 600px 600px;
-    top: 60%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    grid-template-columns: 200px 400px;
+    transform: translate(0%,-100%);
+    top: 65%;
+    left: 20%;
     row-gap: 0;
     column-gap: 0.5rem;
     align-items: end;
@@ -108,19 +107,16 @@ html,body,button,div{
     column-gap: 2.5rem;
     color: #1e1e1e;
     align-items:center;
-
-
   }
   #menuWrapper{
     position: absolute;
     display: grid;
-    top: 90%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    align-items:center;
-    grid-template-columns: 300px 300px 300px 300px;
-
+    top: 70%;
+    left: 20%;
+    grid-template-columns: 250px;
+    align-items: center;
+    color: #777;
+    row-gap: 1rem;
   }
   
   #blockwrapper:hover > .blockLeft{
@@ -290,6 +286,33 @@ html,body,button,div{
   .imgwrapper{
     margin: auto;
   }
+  .menuImgWrapper{
+    width: 10%;
+    display: inline;
+    margin-right: 1rem;
+  }
+  .menuImg{
+    width: 10%;
+    position: relative;
+    bottom: -0.4rem;
+    margin: 0px;
+    max-width: 100%;
+    height: auto;
+    filter: invert(0.6);
+  }
+  .menuText{
+    display: inline;
+    font-size: 0.7rem;
+  }
+
+  .menuItem:hover>.menuText, .menuItem:focus>.menuText{
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+
+
 
 
 

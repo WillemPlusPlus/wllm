@@ -106,6 +106,16 @@ const updateLayout  = () => {
     createBackground(svgLines, dataLines)
 }
 
+//Copy the text to the clipboard
+const copyEmail = () => {
+    let copyText = document.getElementById("menuItememail").getAttribute("link");
+    navigator.clipboard.writeText(copyText).then(() => {
+        document.getElementById("menuTextemail").innerHTML = "< Copied!";
+    });
+}
+
+
+
 let scrollFocus = 1
 let vw, vh, vMax, vMin, bannerSize
 vh = window.innerHeight
@@ -151,22 +161,27 @@ let divMenu = d3.select("#menuWrapper").selectAll(".menuItem")
         enter =>{
 
         let item = enter.append("div")
-        .attr("class","menuItem");
+        .attr("class","menuItem")
+        .attr("id",d=>"menuItem"+d.name)
+        .attr("link",d=>d.link)
+        .attr("onclick",d=>d.onclick)
 
-        item.append("span")
-        .attr("class", "menuImg")
+        item.append("div")
+        .attr("class", "menuImgWrapper")
         .append("img")
         .attr("src", d => d.img)
         .attr("alt", d => d.name)
+        .attr("class", "menuImg")
 
-        item.append("span")
+        item.append("div")
         .attr("class", "menuText")
+        .attr("id",d=>"menuText"+d.name)
         .text(d => d.text)
 
 
 
 
-        return offer;}
+        return item;}
     )
 
 let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
@@ -204,3 +219,5 @@ let buttonUp = document.getElementById("scrollUp")
 let buttonDown = document.getElementById("scrollDown")
 buttonUp.onclick = scrollUp;
 buttonDown.onclick = scrollDown;
+
+

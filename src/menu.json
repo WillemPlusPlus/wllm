@@ -1,28 +1,37 @@
 [
     {
-        "name": "github",
-        "img": "img/github.svg",
-        "text": "This website is on Github"
+        "name": "resume",
+        "img": "img/resume.svg",
+        "text": "< Check out my resume",
+        "link": "",
+        "onclick": "window.open('https://wllm.info/resume.pdf', '_blank').focus();"
 
     },
     {
         "name": "email",
         "img": "img/email.svg",
-        "text": "Copy my email address"
+        "text": "< Copy my email",
+        "link": "hello@wllm.info",
+        "onclick": "copyToClipboard"
+
+    },
+    {
+        "name": "github",
+        "img": "img/github.svg",
+        "text": "< Source code",
+        "link": "https://github.com/WillemPlusPlus/wllm",
+        "onclick": "window.open('https://github.com/WillemPlusPlus/wllm', '_blank').focus();"
 
     },
     {
         "name": "randomize",
         "img": "img/dice.svg",
-        "text": "Randomize!"
-
-    },
-    {
-        "name": "resume",
-        "img": "img/resume.svg",
-        "text": "Check out my resume"
+        "text": "< Randomize!",
+        "link": "",
+        "onclick": "refreshData"
 
     }
+
 
 
 ]
