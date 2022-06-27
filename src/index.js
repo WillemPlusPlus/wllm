@@ -1,5 +1,6 @@
 import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown, updateBannerBackground} from "./svgDraw"
 const careers = require("./offers.json")
+const menuItems = require("./menu.json")
 
 
 const onScroll = () => {
@@ -85,6 +86,7 @@ const createOffer = (e,i,d) => {
 
     root.append("button").attr("class", "workButton").attr("type", "button")
     .text("Email Me")
+    .attr("onclick","location.href='mailto:hello@wllm.info'")
     
     root.append("div").attr("class","workInfo")
     .text(e.textBody)
@@ -143,7 +145,29 @@ for(const career of careers){
     career.h = h
 }
 
+let divMenu = d3.select("#menuWrapper").selectAll(".menuItem")
+    .data(menuItems)
+    .join(
+        enter =>{
 
+        let item = enter.append("div")
+        .attr("class","menuItem");
+
+        item.append("span")
+        .attr("class", "menuImg")
+        .append("img")
+        .attr("src", d => d.img)
+        .attr("alt", d => d.name)
+
+        item.append("span")
+        .attr("class", "menuText")
+        .text(d => d.text)
+
+
+
+
+        return offer;}
+    )
 
 let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
     .data(careers)
