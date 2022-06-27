@@ -62,7 +62,7 @@ html,body,button,div{
   #blockwrapper{
     position: absolute;
     display: grid;
-    grid-template-columns: 200px 400px;
+    grid-template-columns: 200px 600px;
     transform: translate(0%,-100%);
     top: 65%;
     left: 20%;

@@ -153,7 +153,7 @@ const updateBGInfo = () =>{
 }
 
 const updateQuip = () => {
-    divQuip = d3.select("#blockc2r3").data(bgIDs).text(d=>quips[quipID])
+    divQuip = d3.select("#blockc2r3").data(bgIDs).text("// "+quips[quipID])
     divQuip = d3.select("#menuTextemail").text("< Copy my email")
 }
 
