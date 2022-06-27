@@ -70,14 +70,14 @@ const toggleScrollButtons = (scrollFoc) => {
 const scrollUp = () => {
     onScroll()
     let y = (scrollFocus-1)*window.innerHeight
-    window.scrollTo(0, y)
+    window.scrollTo(0, y+1)
 }
 
 const scrollDown = () => {
     onScroll()
     let y = (scrollFocus+1)*window.innerHeight
     console.log(y)
-    window.scrollTo(0, y)
+    window.scrollTo(0, y+1)
 }
 
 const scrollAnimation = () => {
