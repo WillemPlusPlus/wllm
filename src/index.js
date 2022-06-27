@@ -87,6 +87,7 @@ const scrollAnimation = () => {
     const yFac = 0.6
     dataLines = createBackgroundData(dataBG, bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
     createBackground(svgLines, dataLines)
+    updateBGInfo()
 
 }
 
@@ -144,7 +145,7 @@ const updateBGInfo = () =>{
     )
     divBGYear = d3.select("#bgInfo").selectAll(".bgYear").data([year]).join(
         enter => {
-            let div = enter.append("div")
+            let div = enter.append("span")
             div.attr("class", "bgYear").text(d=>d)
             return div},
         update => update.text(d=>d)
@@ -170,6 +171,15 @@ const updateLayout  = () => {
     updateBGInfo(dataBG, bgIDs)
 }
 
+const toggleInfo = () => {
+    const disp = document.getElementById("bgInfo").style.display
+    if(disp!="block"||!(disp)){
+        document.getElementById("bgInfo").style.display = "block"
+    }else{
+        document.getElementById("bgInfo").style.display = "none"
+    }
+}
+
 const updateData = () => {
     quipID = Math.floor(Math.random()*quips.length)
     bgIDs = []
@@ -190,18 +200,6 @@ const copyEmail = () => {
 }
 
 window.copyEmail = copyEmail
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 for(const career of careers){
@@ -269,10 +267,12 @@ for(let i = 0; i<tabs.length; i++){
 updateData();
 document.addEventListener('scroll', onScroll);
 
+let buttonInfo = document.getElementById("infoButton")
 let buttonUp = document.getElementById("scrollUp")
 let buttonDown = document.getElementById("scrollDown")
 buttonUp.onclick = scrollUp;
 buttonDown.onclick = scrollDown;
+buttonInfo.onclick = toggleInfo;
 
 openAbout({"currentTarget":document.getElementById("about")})
 

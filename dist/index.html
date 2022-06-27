@@ -15,9 +15,7 @@
   <body>
     <svg id = "background" width="100vw" height="100vh"></svg>
     <div class = "page" id = "page1">
-      <div id = "bgInfo">
-      <div id = "bgCountry"></div>
-    </div>
+
       <div id = "blockwrapper">
         <div class = blockLeft id = blockc1r1><a href="mailto:hello@wllm.info">hello</a></div>
         <div class = blockRight id = blockc2r1>// thanks for checking in! </div>
@@ -82,10 +80,17 @@
  
       </div>
     </div>
+    <div id="infoWrapper">
+      <div id = "bgInfo"> This background is brought to you by the change in temperature between 1960 and <span class = "bgYear">1965</span> in these places:
+      <div id = "bgCountry"></div>
+      Scroll down to change the year!
+    </div>
+    <div id = "infoButton"><img id = "infoImg" src="img/info.svg"></div>
+  </div>
 
     <div id = "bannerwrapper"><svg id = "banner" width = "100%" height = "100%"></svg></div>
-    <button id = "scrollUp" class = "scrollButton" type = "button"><img class = "flip scrollImg" src="img/arrow.svg"></div>
-    <button id = "scrollDown" class = "scrollButton" type = "button"><img class = "scrollImg"src="img/arrow.svg"></div>
+    <button id = "scrollUp" class = "scrollButton" type = "button"><img class = "flip scrollImg" src="img/arrow.svg"></button>
+    <button id = "scrollDown" class = "scrollButton" type = "button"><img class = "scrollImg"src="img/arrow.svg"></button>
     <script src="main.js"></script>
   </body>
 </html>
