@@ -1,6 +1,38 @@
 import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown, updateBannerBackground} from "./svgDraw"
 const careers = require("./offers.json")
 const menuItems = require("./menu.json")
+const dataBD = require("./dataBG.json")
+const quips = require("./quips.json")
+const bgLines = 6
+let quipID = 0
+let bgIDs = []
+let dataLines = []
+let divQuip
+let scrollFocus = 1
+let vh = window.innerHeight
+let vw = window.innerWidth
+let vMax = Math.max(vh,vw)/100
+let vMin = Math.min(vh,vw)/100
+let lastKnownScrollPosition = 0;
+let ticking = false;
+const w = vh*0.2
+const h = vh*0.05
+let divBanner = d3.select("#bannerwrapper")
+let bannerSize = Number(divBanner.style('width').slice(0, -2))
+const svgBG = d3.select("#background")
+const svgLogo = d3.select("#banner")
+const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
+const svgMask = svgLogo.append("mask")
+    .attr("id", "logoClip")
+svgMask.append("rect")
+    .attr("width", bannerSize)
+    .attr("height", bannerSize)
+    .attr("fill", "#fff")
+svgBanner.attr("mask", "url(#logoClip)")
+const svgLines = svgBG.append("svg").attr("id", "lines")
+
+
+
 
 
 const onScroll = () => {
@@ -12,7 +44,7 @@ const onScroll = () => {
       window.requestAnimationFrame(() => {
             
             toggleScrollButtons(scrollFocus)
-            scrollAnimation(lastKnownScrollPosition);
+            scrollAnimation();
         ticking = false;
       });
   
@@ -43,13 +75,12 @@ const scrollDown = () => {
     window.scrollTo(0, y)
 }
 
-const scrollAnimation = (scrollPos) => {
+const scrollAnimation = () => {
 
     const yBuffTop = vh*0.01
     const yBuffBot = vh*2.9
     const yFac = 0.6
-    let yPos = Math.max(Math.min(scrollPos*yFac,yBuffBot), yBuffTop)
-    dataLines = createBackgroundData(svgBG,6,d3.schemeDark2, vw, vh, yPos, dataLines)
+    dataLines = createBackgroundData(svgBG,bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
     createBackground(svgLines, dataLines)
 
 }
@@ -94,6 +125,10 @@ const createOffer = (e,i,d) => {
     .text(e.textFooter)
 
 }
+const updateQuip = () => {
+    divQuip = d3.select("#blockc2r3").data(bgIDs).text(d=>quips[quipID])
+    divQuip = d3.select("#menuTextemail").text("< Copy my email")
+}
 
 const updateLayout  = () => {
     vh = window.innerHeight
@@ -102,8 +137,20 @@ const updateLayout  = () => {
     vMin = Math.min(vh,vw)/100
     bannerSize = Number(divBanner.style('width').slice(0, -2))
     updateBannerBackground(svgLogo,bannerSize)
-    dataLines = createBackgroundData(svgBG,6,d3.schemeDark2, vw, vh, yPos, dataLines)
+    dataLines = createBackgroundData(svgBG,bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
     createBackground(svgLines, dataLines)
+    updateQuip()
+    createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
+}
+
+const updateData = () => {
+    quipID = Math.floor(Math.random()*quips.length)
+    bgIDs = []
+    dataLines = []
+    while(bgIDs.length<bgLines){
+        bgIDs.push(Math.floor(Math.random()*dataBG.length))
+    }
+    updateLayout()
 }
 
 //Copy the text to the clipboard
@@ -116,38 +163,15 @@ const copyEmail = () => {
 
 
 
-let scrollFocus = 1
-let vw, vh, vMax, vMin, bannerSize
-vh = window.innerHeight
-vw = window.innerWidth
-vMax = Math.max(vh,vw)/100
-vMin = Math.min(vh,vw)/100
-const divBanner = d3.select("#bannerwrapper")
-bannerSize = Number(divBanner.style('width').slice(0, -2))
-const svgBG = d3.select("#background")
-const svgLogo = d3.select("#banner")
-const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
-const svgMask = svgLogo.append("mask")
-    .attr("id", "logoClip")
-
-svgMask.append("rect")
-    .attr("width", bannerSize)
-    .attr("height", bannerSize)
-    .attr("fill", "#fff")
-svgBanner.attr("mask", "url(#logoClip)")
-let svgLines = svgBG.append("svg").attr("id", "lines")
-let dataLines = createBackgroundData(svgBG,6,d3.schemeDark2,vw, vh, 0, [])
-createBackground(svgLines, dataLines, vMax)
-
-createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
 
 
-let lastKnownScrollPosition = 0;
-let ticking = false;
 
-openAbout({"currentTarget":document.getElementById("about")})
-const w = vh*0.2
-const h = vh*0.05
+
+
+
+
+
+
 
 
 for(const career of careers){
@@ -212,12 +236,18 @@ for(let i = 0; i<tabs.length; i++){
 
 
 
-
+updateData();
 document.addEventListener('scroll', onScroll);
 
 let buttonUp = document.getElementById("scrollUp")
 let buttonDown = document.getElementById("scrollDown")
 buttonUp.onclick = scrollUp;
 buttonDown.onclick = scrollDown;
+
+openAbout({"currentTarget":document.getElementById("about")})
+
+
+
+
 
 

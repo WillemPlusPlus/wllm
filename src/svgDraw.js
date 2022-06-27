@@ -7,6 +7,7 @@ export const createLine = (e,d,c,s) => {
   }
 
   export const createLogo = (e,height, offsetX, offsetY) =>{
+    console.log("help")
     const createText = (e, text,x,y) => {
       e.append("text")
         .attr("class", "bannerText")
@@ -43,28 +44,28 @@ export const createLine = (e,d,c,s) => {
     
 }
 
-export const createBackgroundData = (e, n, colours, vw, vh, yPos, dataLines) => {
+export const createBackgroundData = (e, seed, vw, vh, yPos, dataLines) => {
   const spacing = vh*0.1
   const sinC = 0.707//0.866
   const lenMin = vh*0.15
   const lenRange = vh*0.25
   const startMax = vh*0.05
   const offsetX = vw-startMax*0.5*n*0.5 - yPos
-  const offestY = -startMax*sinC*n*0.5 + yPos
-
-  return d3.range(n).map(i => {
+  const offsetY = -startMax*sinC*n*0.5 + yPos
+  console.log("help")
+  return seed.map((d,i) => {
     let len, start
     if(dataLines.length){
       len = dataLines[i].len
       start = dataLines[i].start
     }else{
-      len = Math.random()*lenRange+lenMin
-      start = i*spacing + Math.random()*startMax
+      len = d*lenRange+lenMin
+      start = i*spacing
     }
     const x = start*sinC + offsetX
-    const y = start*sinC + offestY
+    const y = start*sinC + offsetY
 
-    return {"x":x,"y":y,"len":len,"start":start, "colour":d3.schemeAccent[i]}
+    return {"x":x,"y":y,"len":len,"start":start, "colour":d3.schemeDark2[i]}
   });
 }
 

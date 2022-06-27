@@ -28,7 +28,7 @@
         "img": "img/dice.svg",
         "text": "< Randomize!",
         "link": "",
-        "onclick": "refreshData"
+        "onclick": "updateData"
 
     }
 
