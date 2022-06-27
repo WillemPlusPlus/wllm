@@ -7,7 +7,6 @@ export const createLine = (e,d,c,s) => {
   }
 
   export const createLogo = (e,height, offsetX, offsetY) =>{
-    console.log("help")
     const createText = (e, text,x,y) => {
       e.append("text")
         .attr("class", "bannerText")
@@ -44,24 +43,28 @@ export const createLine = (e,d,c,s) => {
     
 }
 
-export const createBackgroundData = (e, seed, vw, vh, yPos, dataLines) => {
+export const createBackgroundData = (seed, ids, vw, vh, yPos, dataLines) => {
+  const yFac = 0.5
+  let countries = ids.map((id,i)=>{return seed[id].slice(1)})
   const spacing = vh*0.1
   const sinC = 0.707//0.866
-  const lenMin = vh*0.15
-  const lenRange = vh*0.25
+  const lenMin = vh*0.005
+  const lenRange = vh*2
   const startMax = vh*0.05
-  const offsetX = vw-startMax*0.5*n*0.5 - yPos
-  const offsetY = -startMax*sinC*n*0.5 + yPos
-  console.log("help")
-  return seed.map((d,i) => {
+  const offsetX = vw-startMax*0.5*ids.length*0.5 - yPos*yFac
+  const offsetY = -startMax*sinC*ids.length*0.5 + yPos*yFac
+  const interp = (pos,data) =>  {
+    let dist = (pos*6)%1
+    let p1 = Math.floor(pos*6)
+    let val = (data[p1+1]-data[p1])*dist+data[p1]
+    return val
+  }
+
+  return countries.map((d,i) => {
     let len, start
-    if(dataLines.length){
-      len = dataLines[i].len
-      start = dataLines[i].start
-    }else{
-      len = d*lenRange+lenMin
-      start = i*spacing
-    }
+    len = interp(yPos/(3*vh), d)*lenRange+lenMin
+    start = i*spacing
+    
     const x = start*sinC + offsetX
     const y = start*sinC + offsetY
 
@@ -84,7 +87,7 @@ export const updateBannerBackground = (e,s) => {
   return e.attr("points", triangle)
 }
 
-export const createBackground = (e, dataLines, vMax) =>{
+export const createBackground = (e, dataLines, vMax=10) =>{
 
   const stroke = vMax*10
 
@@ -101,7 +104,6 @@ export const createBackground = (e, dataLines, vMax) =>{
 
 export const createMarkdown = (e,i,d) => {
   const root = d3.select(d[i])
-  console.log(root,e, i)
   const toPoint = (x,y) => {return " " + x.toString() +","+ y.toString() }
   const poly = "0,0"+ toPoint(e.w+e.h,0) + toPoint(e.w,e.h) + toPoint(0,e.h)
   root.append("svg")

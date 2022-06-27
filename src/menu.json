@@ -12,7 +12,7 @@
         "img": "img/email.svg",
         "text": "< Copy my email",
         "link": "hello@wllm.info",
-        "onclick": "copyToClipboard"
+        "onclick": "copyEmail()"
 
     },
     {
@@ -28,7 +28,7 @@
         "img": "img/dice.svg",
         "text": "< Randomize!",
         "link": "",
-        "onclick": "updateData"
+        "onclick": "updateData()"
 
     }
 

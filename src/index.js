@@ -1,8 +1,11 @@
 import { createLine, createLogo, createBackgroundData, createBannerBackground, createBackground, createMarkdown, updateBannerBackground} from "./svgDraw"
 const careers = require("./offers.json")
 const menuItems = require("./menu.json")
-const dataBD = require("./dataBG.json")
+
 const quips = require("./quips.json")
+let dataBG = require("./dataBG.json")
+dataBG  = dataBG.data
+
 const bgLines = 6
 let quipID = 0
 let bgIDs = []
@@ -36,9 +39,9 @@ const svgLines = svgBG.append("svg").attr("id", "lines")
 
 
 const onScroll = () => {
-    lastKnownScrollPosition = window.scrollY;
+    if(window.scrollY){lastKnownScrollPosition = window.scrollY;
+    }else{lastKnownScrollPosition = 0;}
     scrollFocus = Math.floor(lastKnownScrollPosition/window.innerHeight)
-    console.log(lastKnownScrollPosition,scrollFocus)
   
     if (!ticking) {
       window.requestAnimationFrame(() => {
@@ -80,7 +83,7 @@ const scrollAnimation = () => {
     const yBuffTop = vh*0.01
     const yBuffBot = vh*2.9
     const yFac = 0.6
-    dataLines = createBackgroundData(svgBG,bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
+    dataLines = createBackgroundData(dataBG, bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
     createBackground(svgLines, dataLines)
 
 }
@@ -137,7 +140,7 @@ const updateLayout  = () => {
     vMin = Math.min(vh,vw)/100
     bannerSize = Number(divBanner.style('width').slice(0, -2))
     updateBannerBackground(svgLogo,bannerSize)
-    dataLines = createBackgroundData(svgBG,bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
+    dataLines = createBackgroundData(dataBG, bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
     createBackground(svgLines, dataLines)
     updateQuip()
     createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
@@ -153,6 +156,7 @@ const updateData = () => {
     updateLayout()
 }
 
+window.updateData = updateData
 //Copy the text to the clipboard
 const copyEmail = () => {
     let copyText = document.getElementById("menuItememail").getAttribute("link");
@@ -160,6 +164,8 @@ const copyEmail = () => {
         document.getElementById("menuTextemail").innerHTML = "< Copied!";
     });
 }
+
+window.copyEmail = copyEmail
 
 
 
