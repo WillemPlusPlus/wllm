@@ -20,6 +20,8 @@ let lastKnownScrollPosition = 0;
 let ticking = false;
 const w = vh*0.2
 const h = vh*0.05
+let divBGInfo = d3.select("#bgCountry")
+let divBGYear = d3.select("#bgYear")
 let divBanner = d3.select("#bannerwrapper")
 let bannerSize = Number(divBanner.style('width').slice(0, -2))
 const svgBG = d3.select("#background")
@@ -128,6 +130,27 @@ const createOffer = (e,i,d) => {
     .text(e.textFooter)
 
 }
+
+const updateBGInfo = () =>{
+    let year = 1965+Math.floor(lastKnownScrollPosition/(3*vw)*50)
+    let names = bgIDs.map((id,i)=>{return dataBG[id][0]})
+    console.log(year)
+    divBGInfo = d3.select("#bgCountry").selectAll(".country").data(names).join(
+        enter => {
+            let div = enter.append("div")
+            div.attr("class", "country").text(d=>d)
+            return div},
+        update => update.text(d=>d)
+    )
+    divBGYear = d3.select("#bgInfo").selectAll(".bgYear").data([year]).join(
+        enter => {
+            let div = enter.append("div")
+            div.attr("class", "bgYear").text(d=>d)
+            return div},
+        update => update.text(d=>d)
+    )
+}
+
 const updateQuip = () => {
     divQuip = d3.select("#blockc2r3").data(bgIDs).text(d=>quips[quipID])
     divQuip = d3.select("#menuTextemail").text("< Copy my email")
@@ -144,6 +167,7 @@ const updateLayout  = () => {
     createBackground(svgLines, dataLines)
     updateQuip()
     createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
+    updateBGInfo(dataBG, bgIDs)
 }
 
 const updateData = () => {
