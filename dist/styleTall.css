@@ -2,7 +2,8 @@
 
     #blockwrapper {
       grid-template-columns: 90%;
-      left: 50%
+      left: 10%;
+      column-gap: 0rem;
     }
     .blockLeft{
       text-align: left;
@@ -17,6 +18,7 @@
     }
 
     #aboutwrapper {
+      font-size: 0.8rem;
       grid-template-columns: 90%;
     }
     #workWrapper {
@@ -26,5 +28,25 @@
     }
     .imgwrapper{
       width: 50%;
+    }
+    .tabs button {
+      font-size: 0.8rem;
+    }
+    .tabContent{
+      height: 30rem;
+    }
+    .bannerText{
+      font-size: 0.4rem;
+
+    }
+    #infoWrapper{
+      left: 90%;
+      top: 95%;
+
+    }
+    #bgInfo{
+      padding: 1rem;
+      background-color: #222;
+      color: #fff;
     }
 }

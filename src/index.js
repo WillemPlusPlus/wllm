@@ -24,9 +24,10 @@ let divBGInfo = d3.select("#bgCountry")
 let divBGYear = d3.select("#bgYear")
 let divBanner = d3.select("#bannerwrapper")
 let bannerSize = Number(divBanner.style('width').slice(0, -2))
+const bgStroke = vh/10
 const svgBG = d3.select("#background")
 const svgLogo = d3.select("#banner")
-const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2[0])
+const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2)
 const svgMask = svgLogo.append("mask")
     .attr("id", "logoClip")
 svgMask.append("rect")
@@ -76,7 +77,6 @@ const scrollUp = () => {
 const scrollDown = () => {
     onScroll()
     let y = (scrollFocus+1)*window.innerHeight
-    console.log(y)
     window.scrollTo(0, y+1)
 }
 
@@ -86,7 +86,7 @@ const scrollAnimation = () => {
     const yBuffBot = vh*2.9
     const yFac = 0.6
     dataLines = createBackgroundData(dataBG, bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
-    createBackground(svgLines, dataLines)
+    createBackground(svgLines, dataLines, bgStroke)
     updateBGInfo()
 
 }
@@ -135,7 +135,6 @@ const createOffer = (e,i,d) => {
 const updateBGInfo = () =>{
     let year = 1965+Math.floor(lastKnownScrollPosition/(3*vw)*50)
     let names = bgIDs.map((id,i)=>{return dataBG[id][0]})
-    console.log(year)
     divBGInfo = d3.select("#bgCountry").selectAll(".country").data(names).join(
         enter => {
             let div = enter.append("div")
@@ -165,7 +164,7 @@ const updateLayout  = () => {
     bannerSize = Number(divBanner.style('width').slice(0, -2))
     updateBannerBackground(svgLogo,bannerSize)
     dataLines = createBackgroundData(dataBG, bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
-    createBackground(svgLines, dataLines)
+    createBackground(svgLines, dataLines, bgStroke)
     updateQuip()
     createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
     updateBGInfo(dataBG, bgIDs)

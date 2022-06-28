@@ -8,7 +8,7 @@ export const createLine = (e,d,c,s) => {
 
   export const createLogo = (e,height, offsetX, offsetY) =>{
     const createText = (id, text,x,y) => {
-      let selection = e.select(id)
+      let selection = e.select("#"+id)
       if(selection.empty()){
         selection = e.append("text").attr("id", id)
       }
@@ -17,6 +17,9 @@ export const createLine = (e,d,c,s) => {
         .attr("y",y + height)
         .text(text)
     }
+
+    e.selectAll("path").remove();
+
 
     const h = height/2;
     const w = height*3/8;
@@ -41,8 +44,8 @@ export const createLine = (e,d,c,s) => {
         }
     })
 
-    createText("#bannerTextName","// WILLEM MEYER",2*offsetX,2.25*offsetY)
-    createText("#bannerTextCity","// Perth, Australia",2*offsetX,3.5*offsetY)
+    createText("bannerTextName","// WILLEM MEYER",2*offsetX,2.25*offsetY)
+    createText("bannerTextCity","// Perth, Australia",2*offsetX,3.5*offsetY)
     
 }
 
@@ -75,8 +78,9 @@ export const createBackgroundData = (seed, ids, vw, vh, yPos, dataLines) => {
   });
 }
 
-export const createBannerBackground = (e,s,c) => {
+export const createBannerBackground = (e,s,cs) => {
     const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
+    const c = cs[Math.floor(Math.random()*cs.length)]
 
     return e.append("polygon")
     .data([triangle])
