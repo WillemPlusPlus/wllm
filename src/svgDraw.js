@@ -7,9 +7,12 @@ export const createLine = (e,d,c,s) => {
   }
 
   export const createLogo = (e,height, offsetX, offsetY) =>{
-    const createText = (e, text,x,y) => {
-      e.append("text")
-        .attr("class", "bannerText")
+    const createText = (id, text,x,y) => {
+      let selection = e.select(id)
+      if(selection.empty()){
+        selection = e.append("text").attr("id", id)
+      }
+      selection.attr("class", "bannerText")
         .attr("x",x)
         .attr("y",y + height)
         .text(text)
@@ -38,8 +41,8 @@ export const createLine = (e,d,c,s) => {
         }
     })
 
-    createText(e,"// WILLEM MEYER",2*offsetX,2.25*offsetY)
-    createText(e, "// Perth, WA",2*offsetX,3.5*offsetY)
+    createText("#bannerTextName","// WILLEM MEYER",2*offsetX,2.25*offsetY)
+    createText("#bannerTextCity","// Perth, Australia",2*offsetX,3.5*offsetY)
     
 }
 
@@ -87,9 +90,7 @@ export const updateBannerBackground = (e,s) => {
   return e.attr("points", triangle)
 }
 
-export const createBackground = (e, dataLines, vMax=10) =>{
-
-  const stroke = vMax*10
+export const createBackground = (e, dataLines, stroke) =>{
 
   e.selectAll("path")
       .data(dataLines)
