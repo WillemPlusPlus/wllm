@@ -1,3 +1,10 @@
+/**
+ * Create svg path
+ * @param {*} e SVG DOM parent element
+ * @param {*} d SVG path info
+ * @param {*} c colour
+ * @param {*} s stroke width
+ */
 export const createLine = (e,d,c,s) => {
     e.append("path")
       .attr("d", d)
@@ -6,7 +13,14 @@ export const createLine = (e,d,c,s) => {
       .attr("stroke-linecap","round")
   }
 
-  export const createLogo = (e,height, offsetX, offsetY) =>{
+/**
+ * Create Logo in SVG
+ * @param {*} e SVG DOM parent element
+ * @param {*} height 
+ * @param {*} offsetX from top left
+ * @param {*} offsetY from top left
+ */
+export const createLogo = (e,height, offsetX, offsetY) =>{
     const createText = (id, text,x,y) => {
       let selection = e.select("#"+id)
       if(selection.empty()){
@@ -49,7 +63,16 @@ export const createLine = (e,d,c,s) => {
     
 }
 
-export const createBackgroundData = (seed, ids, vw, vh, yPos, dataLines) => {
+/**
+ * Create interpolated background information
+ * @param {*} seed data
+ * @param {*} ids indexes
+ * @param {*} vw
+ * @param {*} vh 
+ * @param {*} yPos distance scrolled
+ * @returns 
+ */
+export const createBackgroundData = (seed, ids, vw, vh, yPos) => {
   const yFac = 0.5
   let countries = ids.map((id,i)=>{return seed[id].slice(1)})
   const spacing = vh*0.1
@@ -77,7 +100,13 @@ export const createBackgroundData = (seed, ids, vw, vh, yPos, dataLines) => {
     return {"x":x,"y":y,"len":len,"start":start, "colour":d3.schemeDark2[i]}
   });
 }
-
+/**
+ * Create triangular SVG banner
+ * @param {*} e SVG root element
+ * @param {*} s width/height
+ * @param {*} cs fill colour
+ * @returns new svg element
+ */
 export const createBannerBackground = (e,s,cs) => {
     const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
     const c = cs[Math.floor(Math.random()*cs.length)]
@@ -89,12 +118,24 @@ export const createBannerBackground = (e,s,cs) => {
     .attr("points", triangle)
 }
 
+/**
+ * Update triangular SVG banner
+ * @param {*} e SVG root element
+ * @param {*} s width/height
+ * @param {*} cs fill colour
+ */
 export const updateBannerBackground = (e,s,c) => {
   const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
   return e.attr("points", triangle)
     .attr("fill" , c)
 }
 
+/**
+ * Use data to render background elements
+ * @param {*} e SVG DOM parent
+ * @param {*} dataLines data
+ * @param {*} stroke stroke width
+ */
 export const createBackground = (e, dataLines, stroke) =>{
 
   e.selectAll("path")
@@ -107,7 +148,12 @@ export const createBackground = (e, dataLines, stroke) =>{
           update => update.attr("d", (d)=>{return d3.line()([[d.x+d.len,d.y-d.len],[d.x-d.len,d.y+d.len]])})
       )
 }
-
+/**
+ * Use data to create a faux-discount box 
+ * @param {*} e datum
+ * @param {*} i index of element in list
+ * @param {*} d d3 selection list
+ */
 export const createMarkdown = (e,i,d) => {
   const root = d3.select(d[i])
   const toPoint = (x,y) => {return " " + x.toString() +","+ y.toString() }
