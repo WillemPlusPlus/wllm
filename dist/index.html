@@ -33,15 +33,36 @@
           <div class = "imgwrapper"><img class = "aboutImg" src="img/wllmportatait1.png" width = 546 height = 546></div>
           <div class = "aboutContent">
             <div class = "tabs">
+
+              <button class = "tab" id = "project">Projects</button>
               <button class = "tab" id = "about">About</button>
               <button class = "tab" id = "data">Data</button>
               <button class = "tab" id = "design">Design</button>
               <button class = "tab" id = "skillset">Skillset</button>
             </div>
+
+
+            <div id="projectContent" class="tabcontent">
+              <p>
+                Major Projects of 2022
+              <ul>
+                <li class = "projectLink"><a href = "https://www.linkedin.com/pulse/hexamon-willem-meyer/?trackingId=b6a42SpIYKNoTs2b93j3yQ%3D%3D">Hexamon: Coding Course</a></li>
+                <li class = "projectLink"><a href = "https://www.linkedin.com/pulse/seasons-inspiration-willem-meyer/?trackingId=phPX7lnY8LxFnCfkQ2Sf0Q%3D%3D">Seasons of Inspiration: Short Story Anthology</a></li>
+              </ul>
+               Major Projects of 2021
+               <ul>
+                <li class = "projectLink"><a href = "https://www.linkedin.com/pulse/automated-diagram-assessment-willem-meyer/?trackingId=XFrY%2BhHntdE20h9G1yybiA%3D%3D">Automating Diagram Assessment: Dissertaion</a></li>
+                <li class = "projectLink"><a href = "https://www.linkedin.com/pulse/ezone-energy-dashboard-willem-meyer/?trackingId=bMEouO9JJOmH3OEXpOnNig%3D%3D">EZONE: Renewable Energy Dashboard</a></li>
+              </ul>
+              </p>
+            </div>
+
             <div id="aboutContent" class="tabcontent">
               <p>
-                Willem Meyer here! I’m a qualified programmer and not-so-qualified graphic designer. I’m about to complete my Masters of Software Engineering at the University of Western Australia. My final hurdle is the course’s practicum component which I aim to complete by interning at an organisation with a software focus. I hope to infiltrate such as organisation and make myself indispensable, learning all of their secrets so that once I am a qualified engineer they will have no choice but to keep me around. If you are part of such an organisation —either in Perth or abroad— please ignore the preceding line and email me!            </div>
-            
+                Willem Meyer here! I’m a qualified programmer and not-so-qualified graphic designer. I’m about to complete my Masters of Software Engineering at the University of Western Australia. My final hurdle is the course’s practicum component which I aim to complete by interning at an organisation with a software focus. I hope to infiltrate such as organisation and make myself indispensable, learning all of their secrets so that once I am a qualified engineer they will have no choice but to keep me around. If you are part of such an organisation —either in Perth or abroad— please ignore the preceding line and email me!
+              </p>
+            </div>
+
             <div id="dataContent" class="tabcontent">
               <p>
                 My masters coursework and research has afforded me the flexibility to pursue a specialisation in data driven computing. I’ve achieved intimate familiarity with every aspect of data proceessing. From collection, cleaning and storage to analysis, visualisation and transformation. During my dissertation, I developed a complete data pipeline for looking into the future of automated assessment of hand-drawn diagrams. I constructed a semantic segmentation model built around the U-net CNN architecture. I developed software for the processing of exam papers and developed tooling for the labelling and augmentation of images for supervised learning tasks, conducted ML experiments and analysed the results.
@@ -81,10 +102,11 @@
       </div>
     </div>
     <div id="infoWrapper">
-      <div id = "bgInfo"> This background is brought to you by the change in temperature between 1960 and <span class = "bgYear">1965</span> in these places:
+    <div id = "bgInfo"> This background is brought to you by the change in temperature between the listed year and 1960 in these places:
       <div id = "bgCountry"></div>
       Scroll down to change the year!
     </div>
+    <span class = "bgYear" id = "splashYear">1965</span>
     <div id = "infoButton"><img id = "infoImg" src="img/info.svg"></div>
   </div>
 

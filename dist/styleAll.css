@@ -118,7 +118,18 @@ html,body,button,div{
     color: #777;
     row-gap: 1rem;
   }
-  
+  #splashYear{
+    float:right;
+    font-size: 2rem;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    margin-bottom: -3rem;
+  }
+
+  .projectLink{
+    color: #2ba2ff;
+  }
+
   #blockwrapper:hover > .blockLeft{
     text-decoration: underline;
     color: #2ba2ff;
@@ -191,7 +202,7 @@ html,body,button,div{
   
   .tabs button {
     outline: none;
-    width: 25%;
+    width: 20%;
     float: left;
     background: #0069ed;
     color: #fff;
@@ -312,7 +323,7 @@ html,body,button,div{
   }
 
   #infoWrapper{
-    position: absolute;
+    position: fixed;
     left: 95%;
     top: 95%;
     transform: translate(-100%,-100%);
@@ -324,9 +335,12 @@ html,body,button,div{
     font-size: 0.7rem;
     text-align: right;
     color: #777;
+    background-color: #222;
+    padding: 1rem
 
   }
   #infoButton{
+    display: inline;
     margin-left: auto; 
     margin-right: 0;
   }

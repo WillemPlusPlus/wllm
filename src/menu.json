@@ -4,7 +4,7 @@
         "img": "img/resume.svg",
         "text": "< Check out my resume",
         "link": "",
-        "onclick": "window.open('https://wllm.info/resume.pdf', '_blank').focus();"
+        "onclick": "window.open('https://s3.ap-southeast-2.amazonaws.com/wllm.info/resume.pdf', '_blank').focus();"
 
     },
     {

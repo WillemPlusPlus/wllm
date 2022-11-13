@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build":"webpack"
+  },
   "dependencies": {
     "d3-scale-chromatic": "^3.0.0"
   },

@@ -89,9 +89,11 @@ export const createBannerBackground = (e,s,cs) => {
     .attr("points", triangle)
 }
 
-export const updateBannerBackground = (e,s) => {
+export const updateBannerBackground = (e,s,cs) => {
   const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
+  const c = cs[Math.floor(Math.random()*cs.length)]
   return e.attr("points", triangle)
+    .attr("fill" , c)
 }
 
 export const createBackground = (e, dataLines, stroke) =>{

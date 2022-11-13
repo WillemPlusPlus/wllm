@@ -133,7 +133,7 @@ const createOffer = (e,i,d) => {
 }
 
 const updateBGInfo = () =>{
-    let year = 1965+Math.floor(lastKnownScrollPosition/(3*vw)*50)
+    let year = 1965+Math.floor(lastKnownScrollPosition/(3*vh)*80)
     let names = bgIDs.map((id,i)=>{return dataBG[id][0]})
     divBGInfo = d3.select("#bgCountry").selectAll(".country").data(names).join(
         enter => {
@@ -142,7 +142,7 @@ const updateBGInfo = () =>{
             return div},
         update => update.text(d=>d)
     )
-    divBGYear = d3.select("#bgInfo").selectAll(".bgYear").data([year]).join(
+    divBGYear = d3.select("body").selectAll(".bgYear").data([year]).join(
         enter => {
             let div = enter.append("span")
             div.attr("class", "bgYear").text(d=>d)
@@ -162,7 +162,7 @@ const updateLayout  = () => {
     vMax = Math.max(vh,vw)/100
     vMin = Math.min(vh,vw)/100
     bannerSize = Number(divBanner.style('width').slice(0, -2))
-    updateBannerBackground(svgLogo,bannerSize)
+    updateBannerBackground(svgLogo,bannerSize, d3.schemeDark2)
     dataLines = createBackgroundData(dataBG, bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
     createBackground(svgLines, dataLines, bgStroke)
     updateQuip()
@@ -273,7 +273,7 @@ buttonUp.onclick = scrollUp;
 buttonDown.onclick = scrollDown;
 buttonInfo.onclick = toggleInfo;
 
-openAbout({"currentTarget":document.getElementById("about")})
+openAbout({"currentTarget":document.getElementById("project")})
 
 
 
