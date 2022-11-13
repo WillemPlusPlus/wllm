@@ -89,9 +89,8 @@ export const createBannerBackground = (e,s,cs) => {
     .attr("points", triangle)
 }
 
-export const updateBannerBackground = (e,s,cs) => {
+export const updateBannerBackground = (e,s,c) => {
   const triangle  = "0,0 " + s.toString() + ",0 0," + s.toString()
-  const c = cs[Math.floor(Math.random()*cs.length)]
   return e.attr("points", triangle)
     .attr("fill" , c)
 }

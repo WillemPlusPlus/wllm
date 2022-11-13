@@ -8,6 +8,7 @@ dataBG  = dataBG.data
 
 const bgLines = 6
 let quipID = 0
+let bannerC = "#1b9e77"
 let bgIDs = []
 let dataLines = []
 let divQuip
@@ -156,13 +157,16 @@ const updateQuip = () => {
     divQuip = d3.select("#menuTextemail").text("< Copy my email")
 }
 
+/**
+ * Event Callback for updating variables/elements that affect presentation when veiwport view changes
+ */
 const updateLayout  = () => {
     vh = window.innerHeight
     vw = window.innerWidth
     vMax = Math.max(vh,vw)/100
     vMin = Math.min(vh,vw)/100
     bannerSize = Number(divBanner.style('width').slice(0, -2))
-    updateBannerBackground(svgLogo,bannerSize, d3.schemeDark2)
+    updateBannerBackground(svgBanner,bannerSize, bannerC)
     dataLines = createBackgroundData(dataBG, bgIDs, vw, vh, lastKnownScrollPosition, dataLines)
     createBackground(svgLines, dataLines, bgStroke)
     updateQuip()
@@ -180,6 +184,7 @@ const toggleInfo = () => {
 }
 
 const updateData = () => {
+    bannerC = d3.schemeDark2[Math.floor(Math.random()*d3.schemeDark2.length)]
     quipID = Math.floor(Math.random()*quips.length)
     bgIDs = []
     dataLines = []
@@ -254,14 +259,12 @@ let divMarkdown = d3.select("#workWrapper").selectAll(".workOffer")
         return offer;}
     )
 
-window.onresize = updateLayout;
+
 
 let tabs = document.getElementsByClassName("tab");
 for(let i = 0; i<tabs.length; i++){
     tabs[i].addEventListener("click",openAbout);
 }
-
-
 
 updateData();
 document.addEventListener('scroll', onScroll);
@@ -269,9 +272,11 @@ document.addEventListener('scroll', onScroll);
 let buttonInfo = document.getElementById("infoButton")
 let buttonUp = document.getElementById("scrollUp")
 let buttonDown = document.getElementById("scrollDown")
+
 buttonUp.onclick = scrollUp;
 buttonDown.onclick = scrollDown;
 buttonInfo.onclick = toggleInfo;
+window.onresize = updateLayout;
 
 openAbout({"currentTarget":document.getElementById("project")})
 
