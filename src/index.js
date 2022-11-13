@@ -4,43 +4,13 @@ const menuItems = require("./menu.json")
 
 const quips = require("./quips.json")
 let dataBG = require("./dataBG.json")
-dataBG  = dataBG.data
-
-const bgLines = 6
-let quipID = 0
-let bannerC = "#1b9e77"
-let bgIDs = []
-let dataLines = []
-let divQuip
-let scrollFocus = 1
-let vh = window.innerHeight
-let vw = window.innerWidth
-let vMax = Math.max(vh,vw)/100
-let vMin = Math.min(vh,vw)/100
-let lastKnownScrollPosition = 0;
-let ticking = false;
-const w = vh*0.2
-const h = vh*0.05
-let divBGInfo = d3.select("#bgCountry")
-let divBGYear = d3.select("#bgYear")
-let divBanner = d3.select("#bannerwrapper")
-let bannerSize = Number(divBanner.style('width').slice(0, -2))
-const bgStroke = vh/10
-const svgBG = d3.select("#background")
-const svgLogo = d3.select("#banner")
-const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2)
-const svgMask = svgLogo.append("mask")
-    .attr("id", "logoClip")
-svgMask.append("rect")
-    .attr("width", 1000)
-    .attr("height", 1000)
-    .attr("fill", "#fff")
-svgBanner.attr("mask", "url(#logoClip)")
-const svgLines = svgBG.append("svg").attr("id", "lines")
 
 
 
 
+/**
+ * Event Callback for scrolling
+ */
 
 const onScroll = () => {
     if(window.scrollY){lastKnownScrollPosition = window.scrollY;
@@ -59,6 +29,10 @@ const onScroll = () => {
     }
   }
 
+/**
+ * Hide scroll button if at top or bottom
+ * @param {*} scrollFoc page index
+ */
 const toggleScrollButtons = (scrollFoc) => {
     buttonUp.style.display = 'block';
     buttonDown.style.display = 'block';
@@ -69,18 +43,26 @@ const toggleScrollButtons = (scrollFoc) => {
         buttonDown.style.display = 'none';
     }
 }
+/**
+ * Event Callback for scroll button
+ */
 const scrollUp = () => {
     onScroll()
     let y = (scrollFocus-1)*window.innerHeight
     window.scrollTo(0, y+1)
 }
-
+/**
+ * Event Callback for scroll button
+ */
 const scrollDown = () => {
     onScroll()
     let y = (scrollFocus+1)*window.innerHeight
     window.scrollTo(0, y+1)
 }
 
+/**
+ * Update BG data and present acord
+ */
 const scrollAnimation = () => {
 
     const yBuffTop = vh*0.01
@@ -92,7 +74,10 @@ const scrollAnimation = () => {
 
 }
 
-
+/**
+ * Event Callback for toggle active About page
+ * @param {*} e event
+ */
 const openAbout = (e) => {
 
     // Get all elements with class="tabcontent" and hide them
@@ -110,7 +95,12 @@ const openAbout = (e) => {
     // Show the current tab, and add an "active" class to the button that opened the tab
     e.currentTarget.className += " active";
 }
-
+/**
+ * Populate DOM element with offer data 
+ * @param {*} e datum
+ * @param {*} i list index
+ * @param {*} d d3 selection list
+ */
 const createOffer = (e,i,d) => {
     const root = d3.select(d[i])
     root.append("div").attr("class","workHeader")
@@ -133,6 +123,9 @@ const createOffer = (e,i,d) => {
 
 }
 
+/**
+ * Update BG Data based on scroll position
+ */
 const updateBGInfo = () =>{
     let year = 1965+Math.floor(lastKnownScrollPosition/(3*vh)*80)
     let names = bgIDs.map((id,i)=>{return dataBG[id][0]})
@@ -151,7 +144,9 @@ const updateBGInfo = () =>{
         update => update.text(d=>d)
     )
 }
-
+/**
+ * Update Quip presentaion
+ */
 const updateQuip = () => {
     divQuip = d3.select("#blockc2r3").data(bgIDs).text("// "+quips[quipID])
     divQuip = d3.select("#menuTextemail").text("< Copy my email")
@@ -173,7 +168,9 @@ const updateLayout  = () => {
     createLogo(svgMask,bannerSize/5,bannerSize/20,bannerSize/20)
     updateBGInfo(dataBG, bgIDs)
 }
-
+/**
+ * Toggle BG info panel
+ */
 const toggleInfo = () => {
     const disp = document.getElementById("bgInfo").style.display
     if(disp!="block"||!(disp)){
@@ -183,6 +180,9 @@ const toggleInfo = () => {
     }
 }
 
+/**
+ * Update all data
+ */
 const updateData = () => {
     bannerC = d3.schemeDark2[Math.floor(Math.random()*d3.schemeDark2.length)]
     quipID = Math.floor(Math.random()*quips.length)
@@ -194,8 +194,10 @@ const updateData = () => {
     updateLayout()
 }
 
-window.updateData = updateData
-//Copy the text to the clipboard
+
+/**
+ * Copy Email adress to clipboard, requires ssl cert
+ */
 const copyEmail = () => {
     let copyText = document.getElementById("menuItememail").getAttribute("link");
     navigator.clipboard.writeText(copyText).then(() => {
@@ -203,9 +205,44 @@ const copyEmail = () => {
     });
 }
 
+window.updateData = updateData
 window.copyEmail = copyEmail
+dataBG  = dataBG.data
 
+//Number of background line elements 
+const bgLines = 6
+let quipID = 0
+let bannerC = "#1b9e77"
+let bgIDs = []
+let dataLines = []
+let divQuip
+let scrollFocus = 1
+let vh = window.innerHeight
+let vw = window.innerWidth
+let vMax = Math.max(vh,vw)/100
+let vMin = Math.min(vh,vw)/100
+let lastKnownScrollPosition = 0;
+let ticking = false;
 
+let divBGInfo = d3.select("#bgCountry")
+let divBGYear = d3.select("#bgYear")
+let divBanner = d3.select("#bannerwrapper")
+let bannerSize = Number(divBanner.style('width').slice(0, -2))
+const bgStroke = vh/10
+const svgBG = d3.select("#background")
+const svgLogo = d3.select("#banner")
+const svgBanner = createBannerBackground(svgLogo,bannerSize,d3.schemeDark2)
+const svgMask = svgLogo.append("mask")
+    .attr("id", "logoClip")
+svgMask.append("rect")
+    .attr("width", 1000)
+    .attr("height", 1000)
+    .attr("fill", "#fff")
+svgBanner.attr("mask", "url(#logoClip)")
+const svgLines = svgBG.append("svg").attr("id", "lines")
+
+const w = vh*0.2
+const h = vh*0.05
 for(const career of careers){
     career.w = w
     career.h = h
